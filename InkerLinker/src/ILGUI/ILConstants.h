@@ -44,6 +44,8 @@ enum IL_GUI_ICON_TYPE
 #define GUI_NODE_GUI_WIDTH 250
 #define GUI_COLOR ofColor(52, 152, 219) //42,32,225) Original
 #define GUI_HOVERING_COLOR ofColor(236, 240, 241)//25,255,171) Original
+#define IL_BACKGROUND_SPACING 20
+#define IL_DEFAULT_COLOR ofColor(52, 152, 219)
 
 //-----------------------------------------------------
 /** \brief GUI Constants 
