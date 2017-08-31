@@ -1,14 +1,19 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ILGUI.h"
 
-class ofApp : public ofBaseApp{
 
+class ofApp : public ofBaseApp
+{
 	public:
+
+		#pragma mark - oF Methods
+		//-----------------------------------------------------
 		void setup();
+		void exit();
 		void update();
 		void draw();
-
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y );
