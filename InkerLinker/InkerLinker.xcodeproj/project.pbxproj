@@ -316,6 +316,57 @@
 		61313493CDB52744E22A604D /* json-forwards.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "json-forwards.h"; path = "../../../addons/ofxJSON/libs/jsoncpp/include/json/json-forwards.h"; sourceTree = SOURCE_ROOT; };
 		637025507E2C0C681E27016B /* FileSystemRoute.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FileSystemRoute.cpp; path = ../../../addons/ofxHTTP/libs/ofxHTTP/src/FileSystemRoute.cpp; sourceTree = SOURCE_ROOT; };
 		63A47AC60FFAFC3BF093EC0F /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OscOutboundPacketStream.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.cpp; sourceTree = SOURCE_ROOT; };
+		63D7A5F71F581D970004ED90 /* CustomTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CustomTimer.cpp; sourceTree = "<group>"; };
+		63D7A5F81F581D970004ED90 /* CustomTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTimer.h; sourceTree = "<group>"; };
+		63D7A5F91F581D970004ED90 /* ofxCenteredTrueTypeFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxCenteredTrueTypeFont.h; sourceTree = "<group>"; };
+		63D7A5FB1F581DA40004ED90 /* TouchBoardManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TouchBoardManager.cpp; sourceTree = "<group>"; };
+		63D7A5FC1F581DA40004ED90 /* TouchBoardManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBoardManager.h; sourceTree = "<group>"; };
+		63D7A5FE1F581DAC0004ED90 /* ILColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILColorPicker.h; sourceTree = "<group>"; };
+		63D7A5FF1F581DAC0004ED90 /* ILConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILConstants.h; sourceTree = "<group>"; };
+		63D7A6001F581DAC0004ED90 /* ILGUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ILGUI.cpp; sourceTree = "<group>"; };
+		63D7A6011F581DAC0004ED90 /* ILGUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILGUI.h; sourceTree = "<group>"; };
+		63D7A6021F581DAC0004ED90 /* ILGUIObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILGUIObject.h; sourceTree = "<group>"; };
+		63D7A6031F581DAC0004ED90 /* ILIconButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILIconButton.h; sourceTree = "<group>"; };
+		63D7A6041F581DAC0004ED90 /* ILLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILLabel.h; sourceTree = "<group>"; };
+		63D7A6051F581DAC0004ED90 /* ILLogBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILLogBox.h; sourceTree = "<group>"; };
+		63D7A6061F581DAC0004ED90 /* ILRadioToggle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILRadioToggle.h; sourceTree = "<group>"; };
+		63D7A6071F581DAC0004ED90 /* ILSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILSlider.h; sourceTree = "<group>"; };
+		63D7A6081F581DAC0004ED90 /* ILSvgButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILSvgButton.h; sourceTree = "<group>"; };
+		63D7A6091F581DAC0004ED90 /* ILSvgToggle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILSvgToggle.h; sourceTree = "<group>"; };
+		63D7A60A1F581DAC0004ED90 /* ILTextButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILTextButton.h; sourceTree = "<group>"; };
+		63D7A60B1F581DAC0004ED90 /* ILTextInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILTextInput.h; sourceTree = "<group>"; };
+		63D7A60C1F581DAC0004ED90 /* ILTextToggle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILTextToggle.h; sourceTree = "<group>"; };
+		63D7A60E1F581DAC0004ED90 /* PaletteLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaletteLoader.h; sourceTree = "<group>"; };
+		63D7A60F1F581DAC0004ED90 /* PaletteSaver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaletteSaver.h; sourceTree = "<group>"; };
+		63D7A6111F581DAC0004ED90 /* ArduinoManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ArduinoManager.cpp; sourceTree = "<group>"; };
+		63D7A6121F581DAC0004ED90 /* ArduinoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArduinoManager.h; sourceTree = "<group>"; };
+		63D7A6131F581DAC0004ED90 /* CloudBitManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CloudBitManager.cpp; sourceTree = "<group>"; };
+		63D7A6141F581DAC0004ED90 /* CloudBitManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloudBitManager.h; sourceTree = "<group>"; };
+		63D7A6151F581DAC0004ED90 /* HTTPManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPManager.cpp; sourceTree = "<group>"; };
+		63D7A6161F581DAC0004ED90 /* HTTPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPManager.h; sourceTree = "<group>"; };
+		63D7A6171F581DAC0004ED90 /* NodeManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeManagers.h; sourceTree = "<group>"; };
+		63D7A6181F581DAC0004ED90 /* OscManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OscManager.cpp; sourceTree = "<group>"; };
+		63D7A6191F581DAC0004ED90 /* OscManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscManager.h; sourceTree = "<group>"; };
+		63D7A61A1F581DAC0004ED90 /* QLabManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = QLabManager.cpp; sourceTree = "<group>"; };
+		63D7A61B1F581DAC0004ED90 /* QLabManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLabManager.h; sourceTree = "<group>"; };
+		63D7A61C1F581DAC0004ED90 /* SerialManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SerialManager.cpp; sourceTree = "<group>"; };
+		63D7A61D1F581DAC0004ED90 /* SerialManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerialManager.h; sourceTree = "<group>"; };
+		63D7A61F1F581DAC0004ED90 /* ArduinoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArduinoNode.h; sourceTree = "<group>"; };
+		63D7A6201F581DAC0004ED90 /* BaseNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNode.h; sourceTree = "<group>"; };
+		63D7A6211F581DAC0004ED90 /* CloudBitNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloudBitNode.h; sourceTree = "<group>"; };
+		63D7A6221F581DAC0004ED90 /* ColourNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColourNode.h; sourceTree = "<group>"; };
+		63D7A6231F581DAC0004ED90 /* HTTPNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPNode.h; sourceTree = "<group>"; };
+		63D7A6241F581DAC0004ED90 /* ImageNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageNode.h; sourceTree = "<group>"; };
+		63D7A6251F581DAC0004ED90 /* InstrumentNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstrumentNode.h; sourceTree = "<group>"; };
+		63D7A6261F581DAC0004ED90 /* Nodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Nodes.h; sourceTree = "<group>"; };
+		63D7A6271F581DAC0004ED90 /* OscNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscNode.h; sourceTree = "<group>"; };
+		63D7A6281F581DAC0004ED90 /* Port.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Port.h; sourceTree = "<group>"; };
+		63D7A6291F581DAC0004ED90 /* QlabNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QlabNode.h; sourceTree = "<group>"; };
+		63D7A62A1F581DAC0004ED90 /* SerialNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerialNode.h; sourceTree = "<group>"; };
+		63D7A62B1F581DAC0004ED90 /* SoundNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundNode.h; sourceTree = "<group>"; };
+		63D7A62C1F581DAC0004ED90 /* Tooltip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tooltip.h; sourceTree = "<group>"; };
+		63D7A62D1F581DAC0004ED90 /* VideoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoNode.h; sourceTree = "<group>"; };
+		63D7A62F1F581DCB0004ED90 /* PatchCordManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PatchCordManager.h; sourceTree = "<group>"; };
 		64F728D0405D9777ECF43CD9 /* Base64Encoding.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Base64Encoding.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/IO/Base64Encoding.h; sourceTree = SOURCE_ROOT; };
 		65E3959FF1F849DAE3BCC008 /* ofxAutoReloadedShader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAutoReloadedShader.cpp; path = ../../../addons/ofxAutoReloadedShader/src/ofxAutoReloadedShader.cpp; sourceTree = SOURCE_ROOT; };
 		65EEFA3DA3526E9CDD9C21F9 /* ofxOscBundle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscBundle.cpp; path = ../../../addons/ofxOsc/src/ofxOscBundle.cpp; sourceTree = SOURCE_ROOT; };
@@ -887,6 +938,106 @@
 				A38A722D40B48826A2DC9FA7 /* src */,
 			);
 			name = ofxMediaType;
+			sourceTree = "<group>";
+		};
+		63D7A5F61F581D970004ED90 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				63D7A5F71F581D970004ED90 /* CustomTimer.cpp */,
+				63D7A5F81F581D970004ED90 /* CustomTimer.h */,
+				63D7A5F91F581D970004ED90 /* ofxCenteredTrueTypeFont.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		63D7A5FA1F581DA40004ED90 /* TouchBoard */ = {
+			isa = PBXGroup;
+			children = (
+				63D7A5FB1F581DA40004ED90 /* TouchBoardManager.cpp */,
+				63D7A5FC1F581DA40004ED90 /* TouchBoardManager.h */,
+			);
+			path = TouchBoard;
+			sourceTree = "<group>";
+		};
+		63D7A5FD1F581DAC0004ED90 /* ILGUI */ = {
+			isa = PBXGroup;
+			children = (
+				63D7A5FE1F581DAC0004ED90 /* ILColorPicker.h */,
+				63D7A5FF1F581DAC0004ED90 /* ILConstants.h */,
+				63D7A6001F581DAC0004ED90 /* ILGUI.cpp */,
+				63D7A6011F581DAC0004ED90 /* ILGUI.h */,
+				63D7A6021F581DAC0004ED90 /* ILGUIObject.h */,
+				63D7A6031F581DAC0004ED90 /* ILIconButton.h */,
+				63D7A6041F581DAC0004ED90 /* ILLabel.h */,
+				63D7A6051F581DAC0004ED90 /* ILLogBox.h */,
+				63D7A6061F581DAC0004ED90 /* ILRadioToggle.h */,
+				63D7A6071F581DAC0004ED90 /* ILSlider.h */,
+				63D7A6081F581DAC0004ED90 /* ILSvgButton.h */,
+				63D7A6091F581DAC0004ED90 /* ILSvgToggle.h */,
+				63D7A60A1F581DAC0004ED90 /* ILTextButton.h */,
+				63D7A60B1F581DAC0004ED90 /* ILTextInput.h */,
+				63D7A60C1F581DAC0004ED90 /* ILTextToggle.h */,
+			);
+			path = ILGUI;
+			sourceTree = "<group>";
+		};
+		63D7A60D1F581DAC0004ED90 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				63D7A60E1F581DAC0004ED90 /* PaletteLoader.h */,
+				63D7A60F1F581DAC0004ED90 /* PaletteSaver.h */,
+			);
+			path = IO;
+			sourceTree = "<group>";
+		};
+		63D7A6101F581DAC0004ED90 /* NodeManagers */ = {
+			isa = PBXGroup;
+			children = (
+				63D7A6111F581DAC0004ED90 /* ArduinoManager.cpp */,
+				63D7A6121F581DAC0004ED90 /* ArduinoManager.h */,
+				63D7A6131F581DAC0004ED90 /* CloudBitManager.cpp */,
+				63D7A6141F581DAC0004ED90 /* CloudBitManager.h */,
+				63D7A6151F581DAC0004ED90 /* HTTPManager.cpp */,
+				63D7A6161F581DAC0004ED90 /* HTTPManager.h */,
+				63D7A6171F581DAC0004ED90 /* NodeManagers.h */,
+				63D7A6181F581DAC0004ED90 /* OscManager.cpp */,
+				63D7A6191F581DAC0004ED90 /* OscManager.h */,
+				63D7A61A1F581DAC0004ED90 /* QLabManager.cpp */,
+				63D7A61B1F581DAC0004ED90 /* QLabManager.h */,
+				63D7A61C1F581DAC0004ED90 /* SerialManager.cpp */,
+				63D7A61D1F581DAC0004ED90 /* SerialManager.h */,
+			);
+			path = NodeManagers;
+			sourceTree = "<group>";
+		};
+		63D7A61E1F581DAC0004ED90 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				63D7A61F1F581DAC0004ED90 /* ArduinoNode.h */,
+				63D7A6201F581DAC0004ED90 /* BaseNode.h */,
+				63D7A6211F581DAC0004ED90 /* CloudBitNode.h */,
+				63D7A6221F581DAC0004ED90 /* ColourNode.h */,
+				63D7A6231F581DAC0004ED90 /* HTTPNode.h */,
+				63D7A6241F581DAC0004ED90 /* ImageNode.h */,
+				63D7A6251F581DAC0004ED90 /* InstrumentNode.h */,
+				63D7A6261F581DAC0004ED90 /* Nodes.h */,
+				63D7A6271F581DAC0004ED90 /* OscNode.h */,
+				63D7A6281F581DAC0004ED90 /* Port.h */,
+				63D7A6291F581DAC0004ED90 /* QlabNode.h */,
+				63D7A62A1F581DAC0004ED90 /* SerialNode.h */,
+				63D7A62B1F581DAC0004ED90 /* SoundNode.h */,
+				63D7A62C1F581DAC0004ED90 /* Tooltip.h */,
+				63D7A62D1F581DAC0004ED90 /* VideoNode.h */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		63D7A62E1F581DCB0004ED90 /* PatchCords */ = {
+			isa = PBXGroup;
+			children = (
+				63D7A62F1F581DCB0004ED90 /* PatchCordManager.h */,
+			);
+			path = PatchCords;
 			sourceTree = "<group>";
 		};
 		641362CA659FAFEE4E81001B /* posix */ = {
@@ -1584,6 +1735,13 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				63D7A5FD1F581DAC0004ED90 /* ILGUI */,
+				63D7A60D1F581DAC0004ED90 /* IO */,
+				63D7A62E1F581DCB0004ED90 /* PatchCords */,
+				63D7A6101F581DAC0004ED90 /* NodeManagers */,
+				63D7A61E1F581DAC0004ED90 /* Nodes */,
+				63D7A5FA1F581DA40004ED90 /* TouchBoard */,
+				63D7A5F61F581D970004ED90 /* Utils */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
