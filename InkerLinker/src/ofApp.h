@@ -26,4 +26,30 @@ class ofApp : public ofBaseApp
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
+		#pragma mark - IL_MISC
+		//-----------------------------------------------------
+		/** \brief Draw Background 
+			*
+		*/
+		//-----------------------------------------------------
+		void drawBackground();
+	
+		//-----------------------------------------------------
+		/** \brief Get a round number for the Screen Size
+			* @param numToRound : number to round.
+			* @param multiple : multiple number.
+			* 
+			* This method computes the nearest number to set
+			* screen size to be.
+		*/
+		//-----------------------------------------------------
+		int getNearestSnapSize(int numToRound, int multiple);
+	
+		//-----------------------------------------------------
+		/** \brief Draw Bottom Bar */
+		//-----------------------------------------------------
+		void drawBottomBar();
+	
+		int noOfXPoints;
+		int noOfYPoints;
 };
