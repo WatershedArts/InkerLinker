@@ -6,7 +6,13 @@ void ofApp::setup()
 	noOfXPoints = ofGetWidth() / IL_BACKGROUND_SPACING;
 	noOfYPoints = ofGetHeight() / IL_BACKGROUND_SPACING;
 	
+	setupGuis();
+}
 
+//--------------------------------------------------------------
+void ofApp::exit()
+{
+	deleteGuis();
 }
 
 //--------------------------------------------------------------
@@ -19,6 +25,7 @@ void ofApp::update()
 void ofApp::draw()
 {
 	drawBackground();
+	drawGuis();
 	drawBottomBar();
 }
 
@@ -79,6 +86,26 @@ void ofApp::windowResized(int w, int h)
 	noOfXPoints = tmpW / IL_BACKGROUND_SPACING;
 	noOfYPoints = tmpH / IL_BACKGROUND_SPACING;
 	ofSetWindowShape(tmpW, tmpH);
+	
+	gui->windowResized(tmpW, tmpH);
+	iogui->windowResized(tmpW, tmpH);
+//	savegui->windowResized(w, h);
+	nodegui->windowResized(tmpW, tmpH);
+	debuggui->windowResized(tmpW, tmpH);
+	colorNodeGui->windowResized(tmpW, tmpH);
+	videoNodeGui->windowResized(tmpW, tmpH);
+	soundNodeGui->windowResized(tmpW, tmpH);
+	instrumentNodeGui->windowResized(tmpW, tmpH);
+	cloudBitNodeGui->windowResized(tmpW, tmpH);
+	arduinoNodeGui->windowResized(tmpW, tmpH);
+	oscNodeGui->windowResized(tmpW, tmpH);
+	qlabNodeGui->windowResized(tmpW, tmpH);
+	imageCaroselNodeGui->windowResized(tmpW, tmpH);
+	timerNodeGui->windowResized(tmpW, tmpH);
+	serialNodeGui->windowResized(tmpW, tmpH);
+	httpNodeGui->windowResized(tmpW, tmpH);
+}
+
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg)
 {
@@ -92,26 +119,887 @@ void ofApp::dragEvent(ofDragInfo dragInfo)
 }
 
 //--------------------------------------------------------------
-
+void ofApp::setupGuis()
+{
+	//---------------------------------------------------------------
+	// Main Gui
+	//---------------------------------------------------------------
+	gui = new ILGUI("GUI",10,10,46,120,true);
+	gui->addSvgToggleDown("Nodes", "nodes.svg");
+	gui->addSvgToggleDown("Debug", "debug.svg");
+	gui->autoResize();
+	gui->setVisible();
+	
+	//---------------------------------------------------------------
+	// Debug Gui
+	//---------------------------------------------------------------
+	debuggui = new ILGUI("Debug Gui",(ofGetWidth() - gui->getBox().getLeft())+10,10,300,0,true);
+	debuggui->addLabelDown("Debug",debuggui->getWidth());
+	debuggui->addLogBoxDown("Log", debuggui->getWidth(),debuggui->getWidth());
+	debuggui->addTextButtonDown("Clear",debuggui->getWidth());
+	debuggui->autoResize();
+	debuggui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// IO Node Gui
+	//---------------------------------------------------------------
+	iogui = new ILGUI("IO",10,gui->getBox().getBottom() + 10,46,120,true);
+	iogui->addSvgButtonDown("Load", "load.svg");
+	iogui->addSvgButtonDown("Save", "save.svg");
+	iogui->addSvgButtonDown("Info", "info.svg");
+	iogui->autoResize();
+	iogui->setVisible();
+	
+	//---------------------------------------------------------------
+	// Nodes Gui
+	//---------------------------------------------------------------
+	vector <string> nodes = {"Arduino","Cloud Bit","Colour","HTTP","Image","Instrument","OSC","QLab","Serial","Sound","Video"};
+	nodegui = new ILGUI("Node Gui",(ofGetWidth() - gui->getBox().getLeft())+10,10,200,0,true);
+	nodegui->addLabelDown("Make things happen",200);
+	nodegui->addRadioDown("Nodes", nodes,true,nodegui->getBox().width,GUI_BUTTON_HEIGHT,true);
+	nodegui->autoResize();
+	nodegui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// Arduino Node Gui
+	//---------------------------------------------------------------
+	vector<string> pins = {"2","3","4","5","6","7","8","9","10","11","12","13"};
+	vector<string> modes = {"DIGITAL","PWM","SERVO"};
+	
+	arduinoNodeGui = new ILGUI("Arduino",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	arduinoNodeGui->setDataType(IL_ARDUINO_DATA);
+	arduinoNodeGui->addLabelDown("Arduino Node",arduinoNodeGui->getBox().width);
+	arduinoNodeGui->addLogBoxDown("",arduinoNodeGui->getBox().width,arduinoNodeGui->getBox().width/2);
+	arduinoNodeGui->addLabelDown("Select Pin",arduinoNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	arduinoNodeGui->addRadioDown("Pins", pins,false,arduinoNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5,true);
+	arduinoNodeGui->addLabelDown("Select Mode",arduinoNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	arduinoNodeGui->addRadioDown("Mode", modes,false,arduinoNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	arduinoNodeGui->addLabelDown("H | L / 0 - 255 / 0 - 180",arduinoNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	arduinoNodeGui->addTextInputDown("Pin Value",arduinoNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	arduinoNodeGui->addLabelDown("Add Action",arduinoNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	arduinoNodeGui->addIconButtonDown("Add Arduino", IL_ICON_PLUS,arduinoNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	arduinoNodeGui->addIconButtonRightOf("Remove Arduino", IL_ICON_MINUS, "Add Arduino",arduinoNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	arduinoNodeGui->addSvgButtonDown("Confirm Arduino Node", "confirm.svg",arduinoNodeGui->getBox().width);
+	arduinoNodeGui->autoResize();
+	arduinoNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// CloudBit Node Gui
+	//---------------------------------------------------------------
+	cloudBitNodeGui = new ILGUI("Cloud Bit",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	cloudBitNodeGui->setDataType(IL_CLOUD_BIT_DATA);
+	cloudBitNodeGui->addLabelDown("CloudBit Node",cloudBitNodeGui->getBox().width);
+	cloudBitNodeGui->addLogBoxDown("",cloudBitNodeGui->getBox().width,cloudBitNodeGui->getBox().width/2);
+	cloudBitNodeGui->addLabelDown("Add Variables",cloudBitNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	cloudBitNodeGui->addTextInputDown("Percent",cloudBitNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	cloudBitNodeGui->addTextInputDown("Duration",cloudBitNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	cloudBitNodeGui->addLabelDown("Add Action",cloudBitNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	cloudBitNodeGui->addIconButtonDown("Add CloudBit", IL_ICON_PLUS,cloudBitNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	cloudBitNodeGui->addIconButtonRightOf("Remove CloudBit", IL_ICON_MINUS, "Add CloudBit",cloudBitNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	cloudBitNodeGui->addSvgButtonDown("Confirm CloudBit Node", "confirm.svg",cloudBitNodeGui->getBox().width);
+	cloudBitNodeGui->autoResize();
+	cloudBitNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// Colour Node Gui
+	//---------------------------------------------------------------
+	colorNodeGui = new ILGUI("Colour",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	colorNodeGui->setDataType(IL_COLOUR_DATA);
+	colorNodeGui->addLabelDown("Colour Node",colorNodeGui->getBox().width);
+	colorNodeGui->addColorPickerDown("Colour",colorNodeGui->getBox().width,colorNodeGui->getBox().width);
+	colorNodeGui->addLabelDown("Add Colours",colorNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	colorNodeGui->addIconButtonDown("Add Colour", IL_ICON_PLUS,colorNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	colorNodeGui->addIconButtonRightOf("Remove Colour", IL_ICON_MINUS, "Add Colour",colorNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	colorNodeGui->addSvgButtonDown("Confirm Colour Node", "confirm.svg",colorNodeGui->getBox().width);
+	colorNodeGui->autoResize();
+	colorNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// HTTP Node Gui
+	//---------------------------------------------------------------
+	httpNodeGui = new ILGUI("HTTP",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	httpNodeGui->setDataType(IL_HTTP_DATA);
+	httpNodeGui->addLabelDown("HTTP Node",httpNodeGui->getBox().width);
+	httpNodeGui->addLogBoxDown("",httpNodeGui->getBox().width,httpNodeGui->getBox().width);
+	httpNodeGui->addLabelDown("Url",httpNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	httpNodeGui->addTextInputDown("Host",httpNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	httpNodeGui->addTextInputDown("Extension",httpNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	httpNodeGui->addLabelDown("Fields",httpNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	httpNodeGui->addTextInputDown("Field",httpNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	httpNodeGui->addTextInputDown("Field Value",httpNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	httpNodeGui->addLabelDown("Add Fields",httpNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	httpNodeGui->addIconButtonDown("Add Field", IL_ICON_PLUS,httpNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	httpNodeGui->addIconButtonRightOf("Remove Field", IL_ICON_MINUS, "Add Field",httpNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	httpNodeGui->addLabelDown("Add Action",httpNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	httpNodeGui->addIconButtonDown("Add HTTP", IL_ICON_PLUS,httpNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	httpNodeGui->addIconButtonRightOf("Remove HTTP", IL_ICON_MINUS, "Add HTTP",httpNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	httpNodeGui->addSvgButtonDown("Confirm HTTP Node", "confirm.svg",httpNodeGui->getBox().width);
+	httpNodeGui->autoResize();
+	httpNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// Image Node Gui
+	//---------------------------------------------------------------
+	imageCaroselNodeGui = new ILGUI("Image",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	imageCaroselNodeGui->setDataType(IL_IMAGE_DATA);
+	imageCaroselNodeGui->addLabelDown("Image Node",imageCaroselNodeGui->getBox().width);
+	imageCaroselNodeGui->addLogBoxDown("",imageCaroselNodeGui->getBox().width,imageCaroselNodeGui->getBox().width/2);
+	imageCaroselNodeGui->addLabelDown("Add Images",imageCaroselNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	imageCaroselNodeGui->addIconButtonDown("Add Image", IL_ICON_PLUS,imageCaroselNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	imageCaroselNodeGui->addIconButtonRightOf("Remove Image", IL_ICON_MINUS, "Add Image",imageCaroselNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	imageCaroselNodeGui->addSvgButtonDown("Confirm Image Node", "confirm.svg",imageCaroselNodeGui->getBox().width);
+	imageCaroselNodeGui->autoResize();
+	imageCaroselNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// Instrument Node Gui
+	//---------------------------------------------------------------
+	instrumentNodeGui = new ILGUI("Instrument",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	instrumentNodeGui->setDataType(IL_INSTRUMENT_DATA);
+	instrumentNodeGui->addLabelDown("Instrument Node",instrumentNodeGui->getBox().width);
+	instrumentNodeGui->addLogBoxDown("",instrumentNodeGui->getBox().width,instrumentNodeGui->getBox().width/2);
+	instrumentNodeGui->addLabelDown("Add Instruments",instrumentNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	instrumentNodeGui->addIconButtonDown("Add Instrument", IL_ICON_PLUS,instrumentNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	instrumentNodeGui->addIconButtonRightOf("Remove Instrument", IL_ICON_MINUS, "Add Instrument",instrumentNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	instrumentNodeGui->addSvgButtonDown("Confirm Instrument Node", "confirm.svg",instrumentNodeGui->getBox().width);
+	instrumentNodeGui->autoResize();
+	instrumentNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// OSC Node Gui
+	//---------------------------------------------------------------
+	oscNodeGui = new ILGUI("OSC",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	oscNodeGui->setDataType(IL_OSC_DATA);
+	oscNodeGui->addLabelDown("OSC Node",oscNodeGui->getBox().width);
+	oscNodeGui->addLogBoxDown("",oscNodeGui->getBox().width,oscNodeGui->getBox().width/1.5);
+	oscNodeGui->addLabelDown("Add Address",oscNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	oscNodeGui->addTextInputDown("Address",oscNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	oscNodeGui->addLabelDown("Add Argument",oscNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	oscNodeGui->addTextInputDown("OSC Value",oscNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	oscNodeGui->addIconButtonDown("Add Arg", IL_ICON_PLUS,oscNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	oscNodeGui->addIconButtonRightOf("Remove Arg", IL_ICON_MINUS, "Add Arg",oscNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	oscNodeGui->addLabelDown("Add Action",oscNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	oscNodeGui->addIconButtonDown("Add OSC", IL_ICON_PLUS,oscNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	oscNodeGui->addIconButtonRightOf("Remove OSC", IL_ICON_MINUS, "Add OSC",oscNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	oscNodeGui->addSvgButtonDown("Confirm OSC Node", "confirm.svg",oscNodeGui->getBox().width);
+	oscNodeGui->autoResize();
+	oscNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// QLab Node Gui
+	//---------------------------------------------------------------
+	qlabNodeGui = new ILGUI("Qlab",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	qlabNodeGui->setDataType(IL_QLAB_DATA);
+	qlabNodeGui->addLabelDown("QLab Node",qlabNodeGui->getBox().width);
+	qlabNodeGui->addLogBoxDown("",qlabNodeGui->getBox().width,qlabNodeGui->getBox().width/1.5);
+	qlabNodeGui->addLabelDown("Add Argument",qlabNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	
+	qlabNodeGui->addTextInputDown("Cue",qlabNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	qlabNodeGui->addTextInputDown("/command",qlabNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	qlabNodeGui->addLabelDown("Add Action",qlabNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	qlabNodeGui->addIconButtonDown("Add QLab", IL_ICON_PLUS,qlabNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	
+	qlabNodeGui->addIconButtonRightOf("Remove OSC", IL_ICON_MINUS, "Add QLab",qlabNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	qlabNodeGui->addSvgButtonDown("Confirm QLab Node", "confirm.svg",qlabNodeGui->getBox().width);
+	qlabNodeGui->autoResize();
+	qlabNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// Serial Node Gui
+	//---------------------------------------------------------------
+	serialNodeGui = new ILGUI("Serial",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	serialNodeGui->setDataType(IL_SERIAL_DATA);
+	serialNodeGui->addLabelDown("Serial Node",serialNodeGui->getBox().width);
+	serialNodeGui->addLogBoxDown("",serialNodeGui->getBox().width,serialNodeGui->getBox().width/2);
+	serialNodeGui->addLabelDown("Add Command",serialNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	serialNodeGui->addTextInputDown("command",serialNodeGui->getBox().width,GUI_BUTTON_HEIGHT/1.5);
+	serialNodeGui->addLabelDown("Add Action",serialNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	serialNodeGui->addIconButtonDown("Add Serial", IL_ICON_PLUS,serialNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	serialNodeGui->addIconButtonRightOf("Remove Serial", IL_ICON_MINUS, "Add Serial",serialNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	serialNodeGui->addSvgButtonDown("Confirm Serial Node", "confirm.svg",serialNodeGui->getBox().width);
+	serialNodeGui->autoResize();
+	serialNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// Sound Node Gui
+	//---------------------------------------------------------------
+	soundNodeGui = new ILGUI("Sound",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	soundNodeGui->setDataType(IL_SOUND_DATA);
+	soundNodeGui->addLabelDown("Sound Node",soundNodeGui->getBox().width);
+	soundNodeGui->addLogBoxDown("",soundNodeGui->getBox().width,soundNodeGui->getBox().width/3);
+	soundNodeGui->addLabelDown("Add Sound File",soundNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	soundNodeGui->addIconButtonDown("Add Sound", IL_ICON_PLUS,soundNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	soundNodeGui->addIconButtonRightOf("Remove Sound", IL_ICON_MINUS, "Add Sound",soundNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	soundNodeGui->addSvgButtonDown("Confirm Sound Node", "confirm.svg",soundNodeGui->getBox().width);
+	soundNodeGui->autoResize();
+	soundNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// Timer Node Gui
+	//---------------------------------------------------------------
+	timerNodeGui = new ILGUI("Timer",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	timerNodeGui->setDataType(IL_TIMER_DATA);
+	timerNodeGui->addLabelDown("Timer Node",timerNodeGui->getBox().width);
+	timerNodeGui->addLogBoxDown("",timerNodeGui->getBox().width,timerNodeGui->getBox().width/3);
+	timerNodeGui->addTextInputDown("Time",timerNodeGui->getBox().width);
+	timerNodeGui->addIconButtonDown("Add Timer", IL_ICON_PLUS,timerNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	timerNodeGui->addIconButtonRightOf("Remove Timer", IL_ICON_MINUS, "Add Timer",timerNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	timerNodeGui->addSvgButtonDown("Confirm Timer Node", "confirm.svg",timerNodeGui->getBox().width);
+	timerNodeGui->autoResize();
+	timerNodeGui->setInvisible();
+	
+	//---------------------------------------------------------------
+	// Video Node Gui
+	//---------------------------------------------------------------
+	videoNodeGui = new ILGUI("Video",(ofGetWidth() - nodegui->getBox().getLeft())+10,10,200,0,true);
+	videoNodeGui->setDataType(IL_VIDEO_DATA);
+	videoNodeGui->addLabelDown("Video Node",videoNodeGui->getBox().width);
+	videoNodeGui->addLogBoxDown("",videoNodeGui->getBox().width,videoNodeGui->getBox().width/3);
+	videoNodeGui->addLabelDown("Add Video File",videoNodeGui->getBox().width,GUI_BUTTON_HEIGHT/2);
+	videoNodeGui->addIconButtonDown("Add Video", IL_ICON_PLUS,videoNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	videoNodeGui->addIconButtonRightOf("Remove Video", IL_ICON_MINUS, "Add Video",videoNodeGui->getBox().width/2,GUI_BUTTON_HEIGHT/2+5);
+	videoNodeGui->addSvgButtonDown("Confirm Video Node", "confirm.svg",videoNodeGui->getBox().width);
+	videoNodeGui->autoResize();
+	videoNodeGui->setInvisible();
+	
+	addListenersToGuis(gui);
+	addListenersToGuis(debuggui);
+	addListenersToGuis(iogui);
+	addListenersToGuis(nodegui);
+	addListenersToGuis(arduinoNodeGui);
+	addListenersToGuis(cloudBitNodeGui);
+	addListenersToGuis(colorNodeGui);
+	addListenersToGuis(httpNodeGui);
+	addListenersToGuis(imageCaroselNodeGui);
+	addListenersToGuis(instrumentNodeGui);
+	addListenersToGuis(oscNodeGui);
+	addListenersToGuis(qlabNodeGui);
+	addListenersToGuis(serialNodeGui);
+	addListenersToGuis(soundNodeGui);
+	addListenersToGuis(timerNodeGui);
+	addListenersToGuis(videoNodeGui);
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-
+void ofApp::drawGuis()
+{
+	gui->draw();
+	debuggui->draw();
+	iogui->draw();
+	nodegui->draw();
+	arduinoNodeGui->draw();
+	colorNodeGui->draw();
+	cloudBitNodeGui->draw();
+	httpNodeGui->draw();
+	imageCaroselNodeGui->draw();
+	instrumentNodeGui->draw();
+	oscNodeGui->draw();
+	qlabNodeGui->draw();
+	serialNodeGui->draw();
+	soundNodeGui->draw();
+	timerNodeGui->draw();
+	videoNodeGui->draw();
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-
+void ofApp::deleteGuis()
+{
+	delete gui;
+	delete debuggui;
+	delete iogui;
+	delete nodegui;
+	delete arduinoNodeGui;
+	delete colorNodeGui;
+	delete cloudBitNodeGui;
+	delete httpNodeGui;
+	delete imageCaroselNodeGui;
+	delete instrumentNodeGui;
+	delete oscNodeGui;
+	delete qlabNodeGui;
+	delete serialNodeGui;
+	delete soundNodeGui;
+	delete timerNodeGui;
+	delete videoNodeGui;
 }
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
+void ofApp::addListenersToGuis(ILGUI *gui)
+{
+	for (int i = 0; i < gui->getGuiItems().size(); i++)
+	{
+		switch (gui->getGuiItems()[i]->getType())
+		{
+			case IL_COLOR_PICKER:
+			{
+				ILColorPicker *g = (ILColorPicker*)gui->getGuiItems()[i];
+				ofAddListener(g->guiEvent, this, &ofApp::colorPickerEvents);
+			}
+				break;
+			case IL_LABEL:
+			{
+				
+			}
+				break;
+			case IL_SLIDER:
+			{
+				ILSlider *g = (ILSlider*)gui->getGuiItems()[i];
+				ofAddListener(g->guiEvent, this, &ofApp::sliderEvents);
+			}
+				break;
+			case IL_SVG_TOGGLE:
+			{
+				ILSvgToggle *g = (ILSvgToggle*)gui->getGuiItems()[i];
+				ofAddListener(g->buttonPushed, this, &ofApp::svgToggleEvents);
+			}
+				break;
+			case IL_SVG_BUTTON:
+			{
+				ILSvgButton *g = (ILSvgButton*)gui->getGuiItems()[i];
+				ofAddListener(g->buttonPushed, this, &ofApp::svgButtonEvents);
+			}
+				break;
+			case IL_TEXT_BUTTON:
+			{
+				ILTextButton *g = (ILTextButton*)gui->getGuiItems()[i];
+				ofAddListener(g->buttonPushed, this, &ofApp::textButtonEvents);
+			}
+				break;
+			case IL_LOG_BOX:
+			{
+				ILLogBox *g = (ILLogBox*)gui->getGuiItems()[i];
+			}
+				break;
+			case IL_TEXT_INPUT:
+			{
+				ILTextInput *g = (ILTextInput*)gui->getGuiItems()[i];
+				ofAddListener(g->guiEvent, this, &ofApp::textInputEvents);
+			}
+				break;
+			case IL_TEXT_TOGGLE:
+			{
+				ILTextToggle *g = (ILTextToggle*)gui->getGuiItems()[i];
+				ofAddListener(g->buttonPushed, this, &ofApp::textToggleEvents);
+			}
+				break;
+			case IL_RADIO_TOGGLE:
+			{
+				ILRadioToggle *g = (ILRadioToggle*)gui->getGuiItems()[i];
+				ofAddListener(g->guiEvent, this, &ofApp::radioEvents);
+			}
+				break;
+			case IL_ICON_BUTTON:
+			{
+				ILIconButton *g = (ILIconButton*)gui->getGuiItems()[i];
+				ofAddListener(g->buttonPushed, this, &ofApp::iconButtonEvents);
+			}
+				break;
+			default: break;
+		}
+	}
 }
 
 //--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
+void ofApp::svgToggleEvents(string &val)
+{
+	cout << "Svg Toggle: " << val << endl;
+	if(val == "Nodes:0")
+	{
+		ILRadioToggle* radio = (ILRadioToggle*)(nodegui->getGuiItemByName("Nodes"));
+		radio->setUnclicked();
+		nodegui->setInvisible();
+		debuggui->setInvisible();
+		
+		hideAllNodeGuis();
+	}
+	else if(val == "Nodes:1")
+	{
+		ILSvgToggle* ret = (ILSvgToggle*)(gui->getGuiItemByName("Debug"));
+		ret->setUnclicked();
+		
+		nodegui->setVisible();
+		debuggui->setInvisible();
+	}
+	else if(val == "Debug:0")
+	{
+		nodegui->setInvisible();
+		debuggui->setInvisible();
+	}
+	else if(val == "Debug:1")
+	{
+		ILRadioToggle* radio = (ILRadioToggle*)(nodegui->getGuiItemByName("Nodes"));
+		radio->setUnclicked();
+		
+		ILSvgToggle* ret = (ILSvgToggle*)(gui->getGuiItemByName("Nodes"));
+		ret->setUnclicked();
+		hideAllNodeGuis();
+		nodegui->setInvisible();
+		debuggui->setVisible();
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::svgButtonEvents(string &val)
+{
+	if(val == "Load")
+	{
+		// Load Script
+	}
+	else if(val == "Save")
+	{
+		// Save Script
+	}
+	else if(val == "Info")
+	{
+		// Open the Web Server
+	}
+	else if(val == "Confirm Arduino Node")
+	{
+		//		arduinoNodeGui->getData().arduinoData
+		arduinoNodeGui->clearData();
+	}
+	else if(val == "Confirm CloudBit Node")
+	{
+		//		arduinoNodeGui->getData().cloudBitData;
+		cloudBitNodeGui->clearData();
+	}
+	else if(val == "Confirm Colour Node")
+	{
+		//		colorNodeGui->getData().colourData.colour
+		colorNodeGui->clearData();
+	}
+	else if(val == "Confirm HTTP Node")
+	{
+		//		httpNodeGui->getData.httpData
+		httpNodeGui->clearData();
+	}
+	else if(val == "Confirm Image Node")
+	{
+		//		imageCaroselNodeGui->getData.imageData
+		imageCaroselNodeGui->clearData();
+	}
+	else if(val == "Confirm Instrument Node")
+	{
+		//		instrumentNodeGui->getData.instrumentData
+		instrumentNodeGui->clearData();
+	}
+	else if(val == "Confirm OSC Node")
+	{
+		//		oscNode->getData.oscNode
+		oscNodeGui->clearData();
+	}
+	else if(val == "Confirm QLab Node")
+	{
+		//		qlabNodeGui->getData.qlabData
+		qlabNodeGui->clearData();
+	}
+	else if(val == "Confirm Serial Node")
+	{
+		//		serialNodeGui->getData().serialData
+		serialNodeGui->clearData();
+	}
+	else if(val == "Confirm Sound Node")
+	{
+		//		soundNodeGui->getData.instrumentData
+		soundNodeGui->clearData();
+	}
+	else if(val == "Confirm Video Node")
+	{
+		//		videoNodeGui->getData.instrumentData
+		videoNodeGui->clearData();
+	}
+}
+//--------------------------------------------------------------
+void ofApp::iconButtonEvents(string &val)
+{
+	if(val == "Add Arduino")
+	{
+		arduinoNodeGui->addNewArduinoData(tmpArduinoData);
+	}
+	else if(val == "Remove Arduino")
+	{
+		arduinoNodeGui->removeLastData();
+	}
+	else if(val == "Add CloudBit")
+	{
+		cloudBitNodeGui->addNewCloudBitData(tmpCloudBitData);
+	}
+	else if(val == "Remove CloudBit")
+	{
+		cloudBitNodeGui->removeLastData();
+	}
+	else if(val == "Add Colour")
+	{
+		colorNodeGui->addNewColourData(tmpColor);
+	}
+	else if(val == "Remove Colour")
+	{
+		colorNodeGui->removeLastData();
+	}
+	else if(val == "Add Field")
+	{
+		tmpHttpData.data.push_back(tmpPostData);
+	}
+	else if(val == "Remove Field")
+	{
+		tmpHttpData.data.pop_back();
+	}
+	else if(val == "Add HTTP")
+	{
+		httpNodeGui->addNewHTTPData(tmpHttpData);
+		//		tmpHttpData.data.push_back(tmpPostData);
+	}
+	else if(val == "Remove HTTP")
+	{
+		httpNodeGui->removeLastData();
+	}
+	else if(val == "Add Image")
+	{
+		string path = ofSystemLoadDialog().getPath();
+		string extChecker = path.substr(path.find_last_of(".") + 1);
+		
+		static string types[4];
+		types[0] = "jpg";
+		types[1] = "jpeg";
+		types[2] = "png";
+		types[3] = "gif";
+		
+		int i = 0;
+		while (i < 3)
+		{
+			if (extChecker == types[i])
+			{
+				imageCaroselNodeGui->addNewImageData(path);
+				return;
+			}
+			i++;
+		}
+		
+		string ds = "Err: Invalid File Type: " + extChecker;
+		DebugMessage("Image Node", ds.c_str());
+	}
+	else if(val == "Remove Image")
+	{
+		imageCaroselNodeGui->removeLastData();
+	}
+	else if(val == "Add Instrument")
+	{
+		string path = ofSystemLoadDialog().getPath();
+		string extChecker = path.substr(path.find_last_of(".") + 1);
+		
+		static string types[4];
+		types[0] = "mp3";
+		types[1] = "wav";
+		types[2] = "mp4";
+		types[3] = "aiff";
+		
+		int i = 0;
+		while (i < 3)
+		{
+			if (extChecker == types[i])
+			{
+				imageCaroselNodeGui->addNewImageData(path);
+				return;
+			}
+			i++;
+		}
+		
+		string ds = "Err: Invalid File Type: " + extChecker;
+		DebugMessage("Instrument Node", ds.c_str());
+	}
+	else if(val == "Remove Instrument")
+	{
+		instrumentNodeGui->removeLastData();
+	}
+	else if(val == "Add Arg")
+	{
+		tmpHttpData.data.push_back(tmpPostData);
+	}
+	else if(val == "Remove Arg")
+	{
+		tmpHttpData.data.pop_back();
+	}
+	else if(val == "Add OSC")
+	{
+		oscNodeGui->addNewOscData(tmpOscData);
+	}
+	else if(val == "Remove OSC")
+	{
+		oscNodeGui->removeLastData();
+	}
+	else if(val == "Add QLab")
+	{
+		qlabNodeGui->addNewQLabData(tmpQLabData);
+	}
+	else if(val == "Remove QLab")
+	{
+		qlabNodeGui->removeLastData();
+	}
+	else if(val == "Add Serial")
+	{
+		serialNodeGui->addNewSerialData(tmpSerialCommand);
+	}
+	else if(val == "Remove Serial")
+	{
+		serialNodeGui->removeLastData();
+	}
+	else if(val == "Add Sound")
+	{
+		string path = ofSystemLoadDialog().getPath();
+		string extChecker = path.substr(path.find_last_of(".") + 1);
+		
+		static string types[4];
+		types[0] = "mp3";
+		types[1] = "wav";
+		types[2] = "mp4";
+		types[3] = "aiff";
+		
+		int i = 0;
+		while (i < 3)
+		{
+			if (extChecker == types[i])
+			{
+				soundNodeGui->addNewSoundData(path);
+				return;
+			}
+			i++;
+		}
+		
+		string ds = "Err: Invalid File Type: " + extChecker;
+		DebugMessage("Sound Node", ds.c_str());
+	}
+	else if(val == "Remove Sound")
+	{
+		soundNodeGui->removeLastData();
+	}
+	else if(val == "Add Video")
+	{
+		string path = ofSystemLoadDialog().getPath();
+		string extChecker = path.substr(path.find_last_of(".") + 1);
+		
+		static string types[2];
+		types[0] = "mov";
+		types[1] = "mp4";
+		
+		int i = 0;
+		while (i < 2)
+		{
+			if (extChecker == types[i])
+			{
+				videoNodeGui->addNewVideoData(path);
+				return;
+			}
+			i++;
+		}
+		
+		string ds = "Err: Invalid File Type: " + extChecker;
+		DebugMessage("Video Node", ds.c_str());
+	}
+	else if(val == "Remove Video")
+	{
+		videoNodeGui->removeLastData();
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::textButtonEvents(string &val)
+{
+	cout << "Text Button: " << val << endl;
+}
+//--------------------------------------------------------------
+void ofApp::textToggleEvents(string &val)
+{
+	cout << "Text Toggle: " << val << endl;
+}
+//--------------------------------------------------------------
+void ofApp::textInputEvents(TextInputEvent &val)
+{
+	cout << "Text Input : " << val.name << " " << val.text << endl;
+	if(val.name == "Pin Value")
+	{
+		tmpArduinoData.value = val.text;
+	}
+	else if(val.name == "Percent")
+	{
+		tmpCloudBitData.percent = val.text;
+	}
+	else if(val.name == "Duration")
+	{
+		tmpCloudBitData.duration_ms = val.text;
+	}
+	else if(val.name == "Host")
+	{
+		tmpHttpData.hostURL = "http://www." + val.text + "/";
+	}
+	else if(val.name == "Extension")
+	{
+		tmpHttpData.extension = val.text;
+	}
+	else if(val.name == "Field")
+	{
+		tmpPostData.field = val.text;
+	}
+	else if(val.name == "Field Value")
+	{
+		tmpPostData.value = val.text;
+	}
+	else if(val.name == "Address")
+	{
+		tmpOscData.address = val.text;
+	}
+	else if(val.name == "OSC Value")
+	{
+		tmpOscData.value.push_back(val.text);
+	}
+	else if(val.name == "Cue")
+	{
+		tmpQLabData.cue = val.text;
+	}
+	else if(val.name == "/command")
+	{
+		tmpQLabData.type = val.text;
+	}
+	else if(val.name == "command")
+	{
+		tmpSerialCommand = val.text;
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::sliderEvents(SliderEvent &val)
+{
+	cout << "Slider: " << val.name << " " << val.value << endl;
+}
+
+//--------------------------------------------------------------
+void ofApp::colorPickerEvents(ColourPickerEvent &val)
+{
+	cout << "Colour Picker: " << val.name << " " << val.colour << endl;
+	if(val.name == "Colour")
+	{
+		tmpColor = val.colour;
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::radioEvents(RadioEvent &val)
+{
+	cout << "Radio: " << val.radioname << " " << val.value << endl;
+	if(val.radioname == "Nodes")
+	{
+		vector<string> closeAllNodes = ofSplitString(val.value, ":");
+		
+		if(closeAllNodes[1] == "0")
+		{
+			hideAllNodeGuis();
+		}
+		else if(val.value == "Arduino:1")
+		{
+			hideAllNodeGuis();
+			arduinoNodeGui->setVisible();
+		}
+		else if(val.value == "Cloud Bit:1")
+		{
+			hideAllNodeGuis();
+			cloudBitNodeGui->setVisible();
+		}
+		else if(val.value == "Colour:1")
+		{
+			hideAllNodeGuis();
+			colorNodeGui->setVisible();
+		}
+		else if(val.value == "HTTP:1")
+		{
+			hideAllNodeGuis();
+			httpNodeGui->setVisible();
+		}
+		else if(val.value == "Image:1")
+		{
+			hideAllNodeGuis();
+			imageCaroselNodeGui->setVisible();
+		}
+		else if(val.value == "Instrument:1")
+		{
+			hideAllNodeGuis();
+			instrumentNodeGui->setVisible();
+		}
+		else if(val.value == "OSC:1")
+		{
+			hideAllNodeGuis();
+			oscNodeGui->setVisible();
+		}
+		else if(val.value == "QLab:1")
+		{
+			hideAllNodeGuis();
+			qlabNodeGui->setVisible();
+		}
+		else if(val.value == "Serial:1")
+		{
+			hideAllNodeGuis();
+			serialNodeGui->setVisible();
+		}
+		else if(val.value == "Sound:1")
+		{
+			hideAllNodeGuis();
+			soundNodeGui->setVisible();
+		}
+		else if(val.value == "Timer:1")
+		{
+			hideAllNodeGuis();
+			timerNodeGui->setVisible();
+		}
+		else if(val.value == "Video:1")
+		{
+			hideAllNodeGuis();
+			videoNodeGui->setVisible();
+		}
+	}
+	else if(val.radioname == "Pins")
+	{
+		cout << "Pins: " << val.value << endl;
+		vector<string> pinNo = ofSplitString(val.value, ":");
+		tmpArduinoData.pin = pinNo[0];
+	}
+	else if(val.radioname == "Mode")
+	{
+		vector<string> mode = ofSplitString(val.value, ":");
+		tmpArduinoData.mode = mode[0];
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::clearContexts()
+{
+	arduinoNodeGui->clearData();
+	cloudBitNodeGui->clearData();
+	colorNodeGui->clearData();
+	httpNodeGui->clearData();
+	imageCaroselNodeGui->clearData();
+	instrumentNodeGui->clearData();
+	oscNodeGui->clearData();
+	qlabNodeGui->clearData();
+	serialNodeGui->clearData();
+	soundNodeGui->clearData();
+	timerNodeGui->clearData();
+	videoNodeGui->clearData();
+}
+
+//--------------------------------------------------------------
+void ofApp::hideAllNodeGuis()
+{
+	clearContexts();
+	colorNodeGui->setInvisible();
+	videoNodeGui->setInvisible();
+	soundNodeGui->setInvisible();
+	instrumentNodeGui->setInvisible();
+	cloudBitNodeGui->setInvisible();
+	arduinoNodeGui->setInvisible();
+	oscNodeGui->setInvisible();
+	qlabNodeGui->setInvisible();
+	timerNodeGui->setInvisible();
+	imageCaroselNodeGui->setInvisible();
+	serialNodeGui->setInvisible();
+	httpNodeGui->setInvisible();
+}
 
 //--------------------------------------------------------------
 int ofApp::getNearestSnapSize(int numToRound, int multiple)
