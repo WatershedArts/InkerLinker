@@ -15,21 +15,6 @@
 #include "ofxSvgLoader.h"
 #include "ILConstants.h"
 
-enum TB_POINT_TYPE
-{
-	TB_TOUCH_POINT = 0,
-	TB_RELEASE_POINT = 1
-};
-
-struct Electrode
-{
-	string id;
-	ofRectangle area;
-	bool bHover;
-	bool bAction;
-	TB_POINT_TYPE type;
-	ofPoint offset;
-};
 
 class TouchBoardManager
 {
