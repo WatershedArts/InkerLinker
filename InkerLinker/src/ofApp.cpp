@@ -1207,6 +1207,7 @@ void ofApp::drawBackground()
 void ofApp::drawBottomBar()
 {
 	ofPushStyle();
+	ofFill();
 	ofSetColor(IL_DEFAULT_COLOR);
 	ofDrawRectRounded(0,ofGetHeight()-(30), ofGetWidth(), 30,2);
 	ofSetColor(255);
