@@ -473,6 +473,7 @@ void ILGUI::draw()
 	if (bVisible)
 	{
 		ofPushStyle();
+		ofFill();
 		ofSetColor(255, 255, 255);
 		ofDrawRectRounded(guiRect,2);
 		ofSetColor(255, 0, 0);
