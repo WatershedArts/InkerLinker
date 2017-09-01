@@ -103,7 +103,7 @@ void TouchBoardManager::draw()
 	tb.draw();
 	ofPopMatrix();
 	ofPopStyle();
-
+	ofPushStyle();
 	for (int i = 0; i < touchPoints.size(); i++)
 	{
 		ofSetColor(255);
@@ -134,7 +134,7 @@ void TouchBoardManager::draw()
 //	for (int i = 0; i < touchPoints.size(); i++) if(touchPoints[i].bHover) ofDrawBitmapStringHighlight("Touch Point " + ofToString(i),touchPoints[i].area.getCenter() + ofPoint(20,0));
 //	for (int i = 0; i < releasePoints.size(); i++) if(releasePoints[i].bHover) ofDrawBitmapStringHighlight("Release Point " + ofToString(i),releasePoints[i].area.getCenter()+ ofPoint(20,0));
 //	
-//	ofPopStyle();
+	ofPopStyle();
 }
 
 //-----------------------------------------------------

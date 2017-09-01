@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ILGUI.h"
-
+#include "TouchBoardManager.h"
 
 class ofApp : public ofBaseApp
 {
@@ -201,7 +201,40 @@ class ofApp : public ofBaseApp
 		*/
 		//-----------------------------------------------------
 		void clearContexts();
-		
+	
+		#pragma mark - IL_TOUCH_BOARD
+	
+		TouchBoardManager touchBoardManager;
+	
+		//-----------------------------------------------------
+		/** \brief Setup Touchboard
+			*
+			* This method sets up the touch board manager
+			* and attaches listeners to the the electrodes
+			* events.
+		*/
+		//-----------------------------------------------------
+		void setupTouchBoard();
+	
+		//-----------------------------------------------------
+		/** \brief New Touch Event
+			* @param electrode : which electrode.
+			*
+			* This method listens for touch event from
+			* the electrodes.
+		*/
+		//-----------------------------------------------------
+		void newTouchEvent(string &electrode);
+	
+		//-----------------------------------------------------
+		/** \brief New Release Event
+			* @param electrode : which electrode.
+			*
+			* This method listens for release event from 
+			* the electrodes.
+		*/
+		//-----------------------------------------------------
+		void newReleaseEvent(string &electrode);
 	
 		#pragma mark - IL_MISC
 		//-----------------------------------------------------

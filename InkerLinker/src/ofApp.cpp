@@ -7,6 +7,8 @@ void ofApp::setup()
 	noOfYPoints = ofGetHeight() / IL_BACKGROUND_SPACING;
 	
 	setupGuis();
+	setupTouchBoard();
+	
 }
 
 //--------------------------------------------------------------
@@ -25,6 +27,10 @@ void ofApp::update()
 void ofApp::draw()
 {
 	drawBackground();
+	touchBoardManager.draw();
+	
+	
+	
 	drawGuis();
 	drawBottomBar();
 }
@@ -32,13 +38,45 @@ void ofApp::draw()
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-
+	switch(key)
+	{
+		case '1': touchBoardManager.simulateTouchEvent(0); break;
+		case '2': touchBoardManager.simulateTouchEvent(1); break;
+		case '3': touchBoardManager.simulateTouchEvent(2); break;
+		case '4': touchBoardManager.simulateTouchEvent(3); break;
+		case '5': touchBoardManager.simulateTouchEvent(4); break;
+		case '6': touchBoardManager.simulateTouchEvent(5); break;
+		case '7': touchBoardManager.simulateTouchEvent(6); break;
+		case '8': touchBoardManager.simulateTouchEvent(7); break;
+		case '9': touchBoardManager.simulateTouchEvent(8); break;
+		case '0': touchBoardManager.simulateTouchEvent(9); break;
+		case '-': touchBoardManager.simulateTouchEvent(10); break;
+		case '=': touchBoardManager.simulateTouchEvent(11); break;
+		case OF_KEY_BACKSPACE: touchBoardManager.simulateTouchEvent(12); break;
+		default: break;
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key)
 {
-
+	switch(key)
+	{
+		case '1': touchBoardManager.simulateReleaseEvent(0); break;
+		case '2': touchBoardManager.simulateReleaseEvent(1); break;
+		case '3': touchBoardManager.simulateReleaseEvent(2); break;
+		case '4': touchBoardManager.simulateReleaseEvent(3); break;
+		case '5': touchBoardManager.simulateReleaseEvent(4); break;
+		case '6': touchBoardManager.simulateReleaseEvent(5); break;
+		case '7': touchBoardManager.simulateReleaseEvent(6); break;
+		case '8': touchBoardManager.simulateReleaseEvent(7); break;
+		case '9': touchBoardManager.simulateReleaseEvent(8); break;
+		case '0': touchBoardManager.simulateReleaseEvent(9); break;
+		case '-': touchBoardManager.simulateReleaseEvent(10); break;
+		case '=': touchBoardManager.simulateReleaseEvent(11); break;
+		case OF_KEY_BACKSPACE: touchBoardManager.simulateReleaseEvent(12); break;
+		default: break;
+	}
 }
 
 //--------------------------------------------------------------
@@ -999,6 +1037,27 @@ void ofApp::hideAllNodeGuis()
 	imageCaroselNodeGui->setInvisible();
 	serialNodeGui->setInvisible();
 	httpNodeGui->setInvisible();
+}
+
+//--------------------------------------------------------------
+void ofApp::setupTouchBoard()
+{
+	touchBoardManager.setup();
+//	ofAddListener(touchBoardManager.clickElectrode,this,&ofApp::startNewPatchCord);
+	ofAddListener(touchBoardManager.touch,this,&ofApp::newTouchEvent);
+	ofAddListener(touchBoardManager.release,this,&ofApp::newReleaseEvent);
+}
+
+//--------------------------------------------------------------
+void ofApp::newTouchEvent(string &electrode)
+{
+	cout << electrode << endl;
+}
+
+//--------------------------------------------------------------
+void ofApp::newReleaseEvent(string &electrode)
+{
+	cout << electrode << endl;
 }
 
 //--------------------------------------------------------------

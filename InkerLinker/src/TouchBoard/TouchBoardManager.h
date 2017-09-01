@@ -13,6 +13,7 @@
 #include "ofMain.h"
 #include "ofxTouchBoard.h"
 #include "ofxSvgLoader.h"
+#include "ILConstants.h"
 
 enum TB_POINT_TYPE
 {
@@ -29,13 +30,6 @@ struct Electrode
 	TB_POINT_TYPE type;
 	ofPoint offset;
 };
-
-// Our Debug Message Sender
-template<typename T>
-void DebugMessage(T s_Class,T s_Message) {
-	
-	ofSendMessage(string(s_Class) + " | " + string(s_Message));
-}
 
 class TouchBoardManager
 {

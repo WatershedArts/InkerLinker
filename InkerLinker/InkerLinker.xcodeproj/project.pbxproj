@@ -58,6 +58,7 @@
 		62545D179C94265CA1389D4A /* OscOutboundPacketStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63A47AC60FFAFC3BF093EC0F /* OscOutboundPacketStream.cpp */; };
 		630A54B4C43A1DDEA17E6D4F /* ClientProgressStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59147EE28AAD568806BD170 /* ClientProgressStream.cpp */; };
 		630CACF91F585FDC004326A6 /* ILGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A6001F581DAC0004ED90 /* ILGUI.cpp */; };
+		630CACFC1F586B84004326A6 /* TouchBoardManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A5FB1F581DA40004ED90 /* TouchBoardManager.cpp */; };
 		633AFFDB4EC6674D34F0EF7D /* IPAddressRange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5A4362497FA77DF9B5A19 /* IPAddressRange.cpp */; };
 		63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DF87D612C5AAE17AAFA6C0 /* ofxXmlSettings.cpp */; };
 		640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2FAC65C491D4231379F3298 /* ofxOscReceiver.cpp */; };
@@ -1958,6 +1959,7 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				630CACFC1F586B84004326A6 /* TouchBoardManager.cpp in Sources */,
 				630CACF91F585FDC004326A6 /* ILGUI.cpp in Sources */,
 				87EB71A35D524340AE0A8C4C /* ofxAudioDecoder.cpp in Sources */,
 				477F449F6256389CCDB36FFC /* audiodecoderbase.cpp in Sources */,
