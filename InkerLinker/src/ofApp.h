@@ -197,6 +197,14 @@ class ofApp : public ofBaseApp
 		*/
 		//-----------------------------------------------------
 		void hideAllNodeGuis();
+	
+		//-----------------------------------------------------
+		/** \brief Close the Guis
+			*
+			* This method closes all guis.
+		*/
+		//-----------------------------------------------------
+		void closeAllGuis();
 
 		//-----------------------------------------------------
 		/** \brief Clear the Node Gui of Data
@@ -245,7 +253,8 @@ class ofApp : public ofBaseApp
 		PatchCordManager *patchCordManager;
 		PatchCord *newPatchCord;
 		int patchCordIdentifier;
-		int *nextNodesId;
+		int nextNodesId;
+	
 		ofxCenteredTrueTypeFont *nodeFont;
 
 		CustomTimer removeTemporaryPatchCordTimer;
@@ -305,8 +314,53 @@ class ofApp : public ofBaseApp
 		#pragma mark - IL_NODES
 		//-----------------------------------------------------
 		vector<BaseNode*> nodes;
+
+		//-----------------------------------------------------
+		/** \brief Load Nodes
+			* 
+			* This method opens the load dialog and clears the
+			* current nodes and patch cords from memory. Then 
+			* loads in a new palette file.
+		*/
+		//-----------------------------------------------------
+		void loadNodes();
+
+		//-----------------------------------------------------
+		/** \brief Load Nodes
+			* 
+			* This method saves the current palette of 
+			* nodes and patch cords.
+		*/
+		//-----------------------------------------------------
+		void saveNodes();
+
+		//-----------------------------------------------------
+		/** \brief Draw Nodes
+			* 
+			* This method draws the nodes.
+		*/
+		//-----------------------------------------------------
+		void drawNodes();
 	
-	
+		//-----------------------------------------------------
+		/** \brief Attach listeners to nodes.
+			* @param nodes : vector of nodes. 
+			*
+			* This method attaches the relevant listeners to
+			* the relevant events. (Ie osc to osc). 
+		*/
+		//-----------------------------------------------------
+		void attachListenersToNodes(vector<BaseNode*> nodes);
+
+		//-----------------------------------------------------
+		/** \brief Attach listeners to node.
+			* @param node : single node object. 
+			*
+			* This method attaches the relevant listeners to
+			* the relevant events. (Ie osc to osc). 
+		*/
+		//-----------------------------------------------------
+		void attachListenersToNode(BaseNode* node);
 	
 		#pragma mark - IL_MISC
 		//-----------------------------------------------------

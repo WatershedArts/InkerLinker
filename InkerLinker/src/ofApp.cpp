@@ -39,6 +39,7 @@ void ofApp::draw()
 {
 	drawBackground();
 	touchBoardManager.draw();
+	drawNodes();
 	
 	if(newPatchCord != NULL) {
 		ofPushStyle();
@@ -451,6 +452,7 @@ void ofApp::setupGuis()
 //--------------------------------------------------------------
 void ofApp::drawGuis()
 {
+	ofPushStyle();
 	gui->draw();
 	debuggui->draw();
 	iogui->draw();
@@ -467,6 +469,7 @@ void ofApp::drawGuis()
 	soundNodeGui->draw();
 	timerNodeGui->draw();
 	videoNodeGui->draw();
+	ofPopStyle();
 }
 
 //--------------------------------------------------------------
@@ -611,10 +614,12 @@ void ofApp::svgButtonEvents(string &val)
 	if(val == "Load")
 	{
 		// Load Script
+		loadNodes();
 	}
 	else if(val == "Save")
 	{
 		// Save Script
+		saveNodes();
 	}
 	else if(val == "Info")
 	{
@@ -622,58 +627,124 @@ void ofApp::svgButtonEvents(string &val)
 	}
 	else if(val == "Confirm Arduino Node")
 	{
-		//		arduinoNodeGui->getData().arduinoData
+		int *id = new int(nextNodesId);
+		ArduinoNode* arduinoNode = new ArduinoNode(ofRectangle(100,100,200,150), nodeFont, "Arduino", id, arduinoNodeGui->getData().arduinoData);
+		
+		attachListenersToNode(arduinoNode);
+		nodes.push_back(arduinoNode);
 		arduinoNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm CloudBit Node")
 	{
-		//		arduinoNodeGui->getData().cloudBitData;
+		int *id = new int(nextNodesId);
+		CloudBitNode* cloudBitNode = new CloudBitNode(ofRectangle(100,100,200,150), nodeFont, "CloudBit", id, cloudBitNodeGui->getData().cloudBitData);
+		
+		attachListenersToNode(cloudBitNode);
+		nodes.push_back(cloudBitNode);
 		cloudBitNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm Colour Node")
 	{
-		//		colorNodeGui->getData().colourData.colour
+		int *id = new int(nextNodesId);
+		ColourNode* colourNode = new ColourNode(ofRectangle(100,100,200,150), nodeFont, "Colour", id, colorNodeGui->getData().colourData);
+		
+		attachListenersToNode(colourNode);
+		nodes.push_back(colourNode);
 		colorNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm HTTP Node")
 	{
-		//		httpNodeGui->getData.httpData
+		int *id = new int(nextNodesId);
+		HTTPNode* httpNode = new HTTPNode(ofRectangle(100,100,200,150), nodeFont, "HTTP", id, httpNodeGui->getData().httpData);
+		
+		attachListenersToNode(httpNode);
+		nodes.push_back(httpNode);
 		httpNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm Image Node")
 	{
-		//		imageCaroselNodeGui->getData.imageData
+		int *id = new int(nextNodesId);
+		ImageNode* imageNode = new ImageNode(ofRectangle(100,100,200,150), nodeFont, "Image", id, imageCaroselNodeGui->getData().imageData);
+		
+		attachListenersToNode(imageNode);
+		nodes.push_back(imageNode);
 		imageCaroselNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm Instrument Node")
 	{
-		//		instrumentNodeGui->getData.instrumentData
+		int *id = new int(nextNodesId);
+		InstrumentNode* instrumentNode = new InstrumentNode(ofRectangle(100,100,200,150), nodeFont, "Instrument", id, instrumentNodeGui->getData().instrumentData);
+		
+		attachListenersToNode(instrumentNode);
+		nodes.push_back(instrumentNode);
 		instrumentNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm OSC Node")
 	{
-		//		oscNode->getData.oscNode
+		int *id = new int(nextNodesId);
+		OscNode* oscNode = new OscNode(ofRectangle(100,100,200,150), nodeFont, "OSC", id, oscNodeGui->getData().oscData);
+		
+		attachListenersToNode(oscNode);
+		nodes.push_back(oscNode);
 		oscNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm QLab Node")
 	{
-		//		qlabNodeGui->getData.qlabData
+		int *id = new int(nextNodesId);
+		QlabNode* qlabNode = new QlabNode(ofRectangle(100,100,200,150), nodeFont, "QLab", id, qlabNodeGui->getData().qlabData);
+		
+		attachListenersToNode(qlabNode);
+		nodes.push_back(qlabNode);
 		qlabNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm Serial Node")
 	{
-		//		serialNodeGui->getData().serialData
+		int *id = new int(nextNodesId);
+		SerialNode* serialNode = new SerialNode(ofRectangle(100,100,200,150), nodeFont, "Serial", id, serialNodeGui->getData().serialData);
+		
+		attachListenersToNode(serialNode);
+		nodes.push_back(serialNode);
 		serialNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm Sound Node")
 	{
-		//		soundNodeGui->getData.instrumentData
+		int *id = new int(nextNodesId);
+		SoundNode* soundNode = new SoundNode(ofRectangle(100,100,200,150), nodeFont, "Sound", id, soundNodeGui->getData().soundData);
+		
+		attachListenersToNode(soundNode);
+		nodes.push_back(soundNode);
 		soundNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 	else if(val == "Confirm Video Node")
 	{
-		//		videoNodeGui->getData.instrumentData
+		int *id = new int(nextNodesId);
+		VideoNode* videoNode = new VideoNode(ofRectangle(100,100,200,150), nodeFont, "Video", id, videoNodeGui->getData().videoData);
+		
+		attachListenersToNode(videoNode);
+		nodes.push_back(videoNode);
 		videoNodeGui->clearData();
+		closeAllGuis();
+		nextNodesId++;
 	}
 }
 //--------------------------------------------------------------
@@ -1068,6 +1139,16 @@ void ofApp::hideAllNodeGuis()
 	serialNodeGui->setInvisible();
 	httpNodeGui->setInvisible();
 }
+
+//--------------------------------------------------------------
+void ofApp::closeAllGuis()
+{
+	hideAllNodeGuis();
+	nodegui->setInvisible();
+	ILSvgToggle* nodesToggle = (ILSvgToggle*)(gui->getGuiItemByName("Nodes"));
+	nodesToggle->setUnclicked();
+}
+
 #pragma mark - IL_TOUCH_BOARD
 //--------------------------------------------------------------
 void ofApp::setupTouchBoard()
@@ -1081,13 +1162,31 @@ void ofApp::setupTouchBoard()
 //--------------------------------------------------------------
 void ofApp::newTouchEvent(string &electrode)
 {
-	cout << electrode << endl;
+	for(int i = 0; i < nodes.size(); i++)
+	{
+		for(int q = 0; q < nodes[i]->getPorts().size(); q++)
+		{
+			if(nodes[i]->getPorts()[q].getElectrodeId() == electrode)
+			{
+				nodes[i]->triggerPort(q);
+			}
+		}
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::newReleaseEvent(string &electrode)
 {
-	cout << electrode << endl;
+	for(int i = 0; i < nodes.size(); i++)
+	{
+		for(int q = 0; q < nodes[i]->getPorts().size(); q++)
+		{
+			if(nodes[i]->getPorts()[q].getElectrodeId() == electrode)
+			{
+				nodes[i]->triggerPort(q);
+			}
+		}
+	}
 }
 
 //--------------------------------------------------------------
@@ -1168,6 +1267,41 @@ void ofApp::removeNode(int &nodeId)
 			nodes.erase(nodes.begin()+i);
 		}
 	}
+}
+
+#pragma mark - IL_NODES
+//--------------------------------------------------------------
+void ofApp::loadNodes()
+{
+	
+}
+
+//--------------------------------------------------------------
+void ofApp::saveNodes()
+{
+	
+}
+
+//--------------------------------------------------------------
+void ofApp::drawNodes()
+{
+	ofPushStyle();
+	for(auto node : nodes) { node->draw(); }
+	ofPopStyle();
+}
+
+//--------------------------------------------------------------
+void ofApp::attachListenersToNode(BaseNode *node)
+{
+	ofAddListener(node->attachPatchCord, this, &ofApp::attachPatchCordToPort);
+	ofAddListener(node->removePatchCord, this, &ofApp::removePatchCordFromPort);
+	ofAddListener(node->closedNodeId, this, &ofApp::removeNode);
+}
+
+//--------------------------------------------------------------
+void ofApp::attachListenersToNodes(vector<BaseNode *> nodes)
+{
+	for(auto nod : nodes) { attachListenersToNode(nod); }
 }
 
 #pragma mark - IL_MISC
