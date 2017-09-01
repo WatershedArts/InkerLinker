@@ -50,6 +50,12 @@ enum IL_GUI_ICON_TYPE
 #define IL_BACKGROUND_COLOR_1 ofColor(236, 240, 241)
 #define IL_BACKGROUND_COLOR_2 ofColor(220, 224, 225)
 
+#define IL_MAX_NODE_PORTS 8
+#define IL_MIN_NODE_WIDTH 200
+#define IL_MIN_NODE_HEIGHT 100
+#define IL_MAX_NODE_WIDTH 500
+#define IL_MAX_NODE_HEIGHT 500
+
 //-----------------------------------------------------
 /** \brief GUI Constants 
 	* @param s_Class : class the error is coming from
@@ -99,6 +105,41 @@ struct RadioEvent
 	string value;
 };
 
+
+//-----------------------------------------------------
+/** \brief Touch Board Constants */
+//-----------------------------------------------------
+enum TB_POINT_TYPE
+{
+	TB_TOUCH_POINT = 0,
+	TB_RELEASE_POINT = 1
+};
+
+struct Electrode
+{
+	string id;
+	ofRectangle area;
+	bool bHover;
+	bool bAction;
+	TB_POINT_TYPE type;
+	ofPoint offset;
+};
+
+struct PatchCord
+{
+	int patchId;
+	ofPoint startingPoint;
+	ofPoint endingPoint;
+	ofPoint curvePoint;
+	ofPoint firstCurvePoint;
+	ofPoint secondCurvePoint;
+	ofRectangle deleteCord;
+	bool bHovering;
+	string electrodeId;
+	int nodeId;
+	int portId;
+	TB_POINT_TYPE type;
+};
 
 //-----------------------------------------------------
 /** \brief Data Structures */
