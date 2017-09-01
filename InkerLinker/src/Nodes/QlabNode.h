@@ -28,21 +28,21 @@ class QlabNode : public BaseNode
 			* @param font : The font.
 			* @param name : The name of the Node.
 			* @param id   : Pointer to the id of the Node.
-			* @param oscData : A vector of OscData.
+			* @param qlabData : A vector of qlabData.
 			*
 			* This method Constructs an QLab Node from scratch
 			* it generates the ports and layout of the node
 		*/
 		//-----------------------------------------------------
-		QlabNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<OscData> oscData)
+		QlabNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<QLabData> qlabData)
 		{
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
 			this->name = name;
-			this->noOfPorts = oscData.size();
+			this->noOfPorts = qlabData.size();
 			this->box = box;
-			this->oscData = oscData;
+			this->qlabData = qlabData;
 			resizeNode = ofRectangle(box.getBottomRight()+ofPoint(-25,-25),25,25);
 
 			header = ofRectangle(box.x, box.y,box.width, 23);
@@ -60,14 +60,14 @@ class QlabNode : public BaseNode
 			* @param name : The name of the Node.
 			* @param id   : Pointer to the id of the Node.
 			* @param ports : A vector of Port information.
-			* @param oscData : A vector of OscData.
+			* @param qlabData : A vector of qlabData.
 			*
 			* This method Constructs an QLab Node from the
 			* load file it generates the ports and layout of
 			* the node.
 		*/
 		//-----------------------------------------------------
-		QlabNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<OscData> oscData)
+		QlabNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<QLabData> qlabData)
 		{
 			addMouseAndCloseListeners();
 
@@ -76,8 +76,8 @@ class QlabNode : public BaseNode
 			this->name = name;
 			this->ports = ports;
 			this->box = box;
-			this->noOfPorts = oscData.size();
-			this->oscData = oscData;
+			this->noOfPorts = qlabData.size();
+			this->qlabData = qlabData;
 			resizeNode = ofRectangle(box.getBottomRight()+ofPoint(-25,-25),25,25);
 
 			header = ofRectangle(box.x, box.y,box.width, 23);
@@ -109,8 +109,8 @@ class QlabNode : public BaseNode
 		//-----------------------------------------------------
 		void triggerPort(int i)
 		{
-			if(!oscData.empty())
-				ofNotifyEvent(oscEvent, oscData[i], this);
+			if(!qlabData.empty())
+				ofNotifyEvent(qlabEvent, qlabData[i], this);
 		}
 
 		//-----------------------------------------------------
@@ -121,15 +121,16 @@ class QlabNode : public BaseNode
 			* saving.
 		*/
 		//-----------------------------------------------------
-		vector<OscData> getOscData()
+		vector<QLabData> getOscData()
 		{
-			return oscData;
+			return qlabData;
 		}
-
+	
+		ofEvent<QLabData> qlabEvent;
 	private:
 		string filePath;
-		vector<OscData> oscData;
-		ofEvent<OscData> oscEvent;
+		vector<QLabData> qlabData;
+	
 };
 
 #endif /* QlabNode_h */
