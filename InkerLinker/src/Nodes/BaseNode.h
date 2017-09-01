@@ -110,7 +110,7 @@ class BaseNode
 		//-----------------------------------------------------
 		virtual void addMouseAndCloseListeners()
 		{
-			closeNode = new ILIconButton("Close",IL_ICON_CLOSE,ofRectangle(header.getRight()-(GUI_BUTTON_WIDTH/2),header.getCenter().y-(GUI_BUTTON_HEIGHT/4),(GUI_BUTTON_WIDTH/2)-(GUI_PADDING_X*2),(GUI_BUTTON_HEIGHT/2)-(GUI_PADDING_X*2)),CLOSE_IMAGE,font,CLOSE_MESSAGE);
+			closeNode = new ILIconButton("Close",ofRectangle(header.getRight()-(GUI_BUTTON_WIDTH/2),header.getCenter().y-(GUI_BUTTON_HEIGHT/4),(GUI_BUTTON_WIDTH/2)-(GUI_PADDING_X*2),(GUI_BUTTON_HEIGHT/2)-(GUI_PADDING_X*2)),IL_ICON_CROSS);
 			
 			closeNode->setEnabled(true);
 			ofAddListener(closeNode->buttonPushed, this, &BaseNode::closeNodeEvent);
@@ -368,8 +368,8 @@ class BaseNode
 				{
 					ofPoint p = ofPoint(e.x,e.y) - box.getTopLeft();
 					
-					p.x = ofClamp(p.x,MIN_NODE_WIDTH,MAX_NODE_WIDTH);
-					p.y = ofClamp(p.y,MIN_NODE_HEIGHT,MAX_NODE_HEIGHT);
+					p.x = ofClamp(p.x,IL_MIN_NODE_WIDTH,IL_MAX_NODE_WIDTH);
+					p.y = ofClamp(p.y,IL_MIN_NODE_HEIGHT,IL_MAX_NODE_HEIGHT);
 					
 					box.setSize(p.x,p.y);
 					resizeNode.setPosition(box.getBottomRight()+ofPoint(-25,-25));
