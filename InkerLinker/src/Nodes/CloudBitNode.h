@@ -103,7 +103,7 @@ class CloudBitNode : public BaseNode
 			font->drawStringCentered(ofToString(cloudBitData[currentCommand].percent), box.getCenter().x, box.getCenter().y-20);
 			
 			font->drawStringCentered("Current Duration", box.getCenter().x, box.getCenter().y+20);
-			if(cloudBitData[currentCommand].duration_ms == -1) font->drawStringCentered("Always", box.getCenter().x, box.getCenter().y+40);
+			if(cloudBitData[currentCommand].duration_ms == "-1") font->drawStringCentered("Always", box.getCenter().x, box.getCenter().y+40);
 			else font->drawStringCentered(ofToString(cloudBitData[currentCommand].duration_ms), box.getCenter().x, box.getCenter().y+40);
 			ofPopStyle();
 			BaseNode::drawTooltips();
