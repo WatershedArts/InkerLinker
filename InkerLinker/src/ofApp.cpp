@@ -13,6 +13,8 @@ void ofApp::setup()
 	
 	removeTemporaryPatchCordTimer.setup(100, "Remove Patch Cord", false);
 	ofAddListener(removeTemporaryPatchCordTimer.timerFinished,this,&ofApp::removeTemporaryPatchCord);
+	ofEnableAntiAliasing();
+	ofSetCircleResolution(20);
 	
 }
 
@@ -25,7 +27,7 @@ void ofApp::exit()
 //--------------------------------------------------------------
 void ofApp::update()
 {
-
+	touchBoardManager.update();
 	for(auto node : nodes) patchCordManager->updatePatchCords(node->getPorts());
 }
 
@@ -45,6 +47,7 @@ void ofApp::draw()
 		ofPopStyle();
 	}
 	
+	for(auto node : nodes) node->draw();
 	
 	patchCordManager->draw();
 	
@@ -179,7 +182,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo)
 {
 
 }
-
+#pragma mark - IL_GUI
 //--------------------------------------------------------------
 void ofApp::setupGuis()
 {
@@ -1062,7 +1065,7 @@ void ofApp::hideAllNodeGuis()
 	serialNodeGui->setInvisible();
 	httpNodeGui->setInvisible();
 }
-
+#pragma mark - IL_TOUCH_BOARD
 //--------------------------------------------------------------
 void ofApp::setupTouchBoard()
 {
@@ -1163,6 +1166,9 @@ void ofApp::removeNode(int &nodeId)
 		}
 	}
 }
+
+#pragma mark - IL_MISC
+//--------------------------------------------------------------
 int ofApp::getNearestSnapSize(int numToRound, int multiple)
 {
 	if (multiple == 0)
