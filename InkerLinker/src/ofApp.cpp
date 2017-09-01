@@ -8,6 +8,11 @@ void ofApp::setup()
 	
 	setupGuis();
 	setupTouchBoard();
+	patchCordManager = new PatchCordManager();
+	patchCordIdentifier = 0;
+	
+	removeTemporaryPatchCordTimer.setup(100, "Remove Patch Cord", false);
+	ofAddListener(removeTemporaryPatchCordTimer.timerFinished,this,&ofApp::removeTemporaryPatchCord);
 	
 }
 
@@ -21,6 +26,7 @@ void ofApp::exit()
 void ofApp::update()
 {
 
+	for(auto node : nodes) patchCordManager->updatePatchCords(node->getPorts());
 }
 
 //--------------------------------------------------------------
@@ -29,7 +35,18 @@ void ofApp::draw()
 	drawBackground();
 	touchBoardManager.draw();
 	
+	if(newPatchCord != NULL) {
+		ofPushStyle();
+		ofNoFill();
+		ofSetLineWidth(2);
+		if(newPatchCord->type == TB_POINT_TYPE::TB_TOUCH_POINT) ofSetColor(102,153,153);
+		else if(newPatchCord->type == TB_POINT_TYPE::TB_RELEASE_POINT) ofSetColor(255,51,51);
+		ofDrawBezier(newPatchCord->startingPoint.x, newPatchCord->startingPoint.y, newPatchCord->firstCurvePoint.x, newPatchCord->firstCurvePoint.y, newPatchCord->secondCurvePoint.x, newPatchCord->secondCurvePoint.y, newPatchCord->endingPoint.x, newPatchCord->endingPoint.y);
+		ofPopStyle();
+	}
 	
+	
+	patchCordManager->draw();
 	
 	drawGuis();
 	drawBottomBar();
@@ -88,7 +105,12 @@ void ofApp::mouseMoved(int x, int y )
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button)
 {
-
+	if(newPatchCord != NULL) {
+		newPatchCord->endingPoint.x = x;
+		newPatchCord->endingPoint.y = y;
+		newPatchCord->firstCurvePoint = newPatchCord->startingPoint + ofPoint(75,0);
+		newPatchCord->secondCurvePoint = newPatchCord->endingPoint + ofPoint(-50,0);
+	}
 }
 
 //--------------------------------------------------------------
@@ -100,7 +122,9 @@ void ofApp::mousePressed(int x, int y, int button)
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button)
 {
-
+	if(newPatchCord != NULL) {
+		removeTemporaryPatchCordTimer.start();
+	}
 }
 
 //--------------------------------------------------------------
@@ -1043,7 +1067,7 @@ void ofApp::hideAllNodeGuis()
 void ofApp::setupTouchBoard()
 {
 	touchBoardManager.setup();
-//	ofAddListener(touchBoardManager.clickElectrode,this,&ofApp::startNewPatchCord);
+	ofAddListener(touchBoardManager.clickElectrode,this,&ofApp::startNewPatchCord);
 	ofAddListener(touchBoardManager.touch,this,&ofApp::newTouchEvent);
 	ofAddListener(touchBoardManager.release,this,&ofApp::newReleaseEvent);
 }
@@ -1061,6 +1085,84 @@ void ofApp::newReleaseEvent(string &electrode)
 }
 
 //--------------------------------------------------------------
+void ofApp::startNewPatchCord(Electrode &e)
+{
+	string type = e.type ? "Release" : "Touch";
+	patchCordIdentifier++;
+	newPatchCord = NULL;
+	newPatchCord = new PatchCord();
+	newPatchCord->patchId = patchCordIdentifier;
+	newPatchCord->electrodeId = e.id;
+	newPatchCord->startingPoint = e.area.getCenter();
+	newPatchCord->endingPoint = e.area.getCenter();
+	newPatchCord->firstCurvePoint = e.area.getCenter();
+	newPatchCord->secondCurvePoint = e.area.getCenter();
+	newPatchCord->type = e.type;
+}
+
+//--------------------------------------------------------------
+void ofApp::removeTemporaryPatchCord(string &val)
+{
+	newPatchCord = NULL;
+}
+//--------------------------------------------------------------
+void ofApp::attachPatchCordToPort(Port &port)
+{
+	if(newPatchCord != NULL)
+	{
+		newPatchCord->portId = port.getPortId();
+		newPatchCord->nodeId = port.getNodeId();
+		
+		for (int i = 0; i < nodes.size(); i++)
+		{
+			int id = nodes[i]->getID();
+			if(id == port.getNodeId())
+			{
+				if(!port.getPortState())
+				{
+					//					nodes[i]->setPatchCoordId(newPatchCord->patchId);
+					//					nodes[i]->setElectrodeId(newPatchCord->electrodeId);
+					port.setPatchCordId(newPatchCord->patchId);
+					port.setElectrodeId(newPatchCord->electrodeId);
+					port.setPortStateActive();
+					patchCordManager->addNewPatchCord(*newPatchCord);
+				}
+				else
+				{
+					newPatchCord = NULL;
+					return;
+				}
+			}
+		}
+		newPatchCord = NULL;
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::removePatchCordFromPort(Port &port)
+{
+	patchCordManager->removePatchCord(port.getPatchCordId());
+	port.setPortStateInactive();
+	port.setPatchCordId(NULL);
+	port.setElectrodeId("n");
+}
+
+//--------------------------------------------------------------
+void ofApp::removeNode(int &nodeId)
+{
+	cout << nodeId << endl;
+	for(int i = 0; i < nodes.size(); i++)
+	{
+		if(*nodes[i]->id == nodeId)
+		{
+			for(int e = 0; e < nodes[i]->getPorts().size(); e++)
+			{
+				removePatchCordFromPort(nodes[i]->getPorts()[e]);
+			}
+			nodes.erase(nodes.begin()+i);
+		}
+	}
+}
 int ofApp::getNearestSnapSize(int numToRound, int multiple)
 {
 	if (multiple == 0)

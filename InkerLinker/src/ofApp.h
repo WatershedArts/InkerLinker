@@ -4,6 +4,7 @@
 #include "ILConstants.h"
 #include "ILGUI.h"
 #include "TouchBoardManager.h"
+#include "PatchCordManager.h"
 
 class ofApp : public ofBaseApp
 {
@@ -236,6 +237,73 @@ class ofApp : public ofBaseApp
 		*/
 		//-----------------------------------------------------
 		void newReleaseEvent(string &electrode);
+	
+		#pragma mark - IL_PATCH_CORDS
+		//-----------------------------------------------------	
+		PatchCordManager *patchCordManager;
+		PatchCord *newPatchCord;
+		int patchCordIdentifier;
+		int *nextNodesId;
+
+		CustomTimer removeTemporaryPatchCordTimer;
+
+		//-----------------------------------------------------
+		/** \brief Start New Patch Cord
+			* @param e : which electrode.
+			*
+			* This method listens for mouse pressed events
+			* from the touch board manager to start making a 
+			* new patch cord.
+		*/
+		//-----------------------------------------------------
+		void startNewPatchCord(Electrode &e);
+	
+		//-----------------------------------------------------
+		/** \brief Remove Temporary Patch Cord
+			* @param val : timer name.
+			*
+			* This method deletes any patch cords which arent
+			* attached to any nodes 100-250ms after they are
+			* made.
+		*/
+		//-----------------------------------------------------
+		void removeTemporaryPatchCord(string &val);
+	
+		//-----------------------------------------------------
+		/** \brief Attach Patch Cord to Port
+			* @param port : seleted port.
+			*
+			* This method attaches a new patch cord to a 
+			* specific port. (Happens on mouse release)
+		*/
+		//-----------------------------------------------------
+		void attachPatchCordToPort(Port &port);
+	
+		//-----------------------------------------------------
+		/** \brief Remove Patch Cord From Port
+			* @param port : seleted port.
+			*
+			* This method removes the patch cord from the 
+			* port. (Happens on mouse release right button)
+		*/
+		//-----------------------------------------------------
+		void removePatchCordFromPort(Port &port);
+	
+		//-----------------------------------------------------
+		/** \brief Remove Node
+			* @param nodeid : seleted node.
+			*
+			* This method removes all the patch cord from the 
+			* node.
+		*/
+		//-----------------------------------------------------
+		void removeNode(int &nodeId);
+	
+		#pragma mark - IL_NODES
+		//-----------------------------------------------------
+		vector<BaseNode*> nodes;
+	
+	
 	
 		#pragma mark - IL_MISC
 		//-----------------------------------------------------
