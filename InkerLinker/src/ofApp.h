@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ILConstants.h"
 #include "ILGUI.h"
 #include "TouchBoardManager.h"
 
