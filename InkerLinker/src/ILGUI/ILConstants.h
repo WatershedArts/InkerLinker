@@ -45,10 +45,15 @@ enum IL_GUI_ICON_TYPE
 #define GUI_NODE_GUI_WIDTH 250
 #define GUI_COLOR ofColor(52, 152, 219) //42,32,225) Original
 #define GUI_HOVERING_COLOR ofColor(236, 240, 241)//25,255,171) Original
+
 #define IL_BACKGROUND_SPACING 20
 #define IL_DEFAULT_COLOR ofColor(52, 152, 219)
 #define IL_BACKGROUND_COLOR_1 ofColor(236, 240, 241)
 #define IL_BACKGROUND_COLOR_2 ofColor(220, 224, 225)
+
+#define IL_WARNING_COLOR ofColor(231, 76, 60)
+#define IL_DANGER_COLOR ofColor(192, 57, 43)
+#define IL_CONFIRM_COLOR ofColor(46, 204, 113)
 
 #define IL_MAX_NODE_PORTS 8
 #define IL_MIN_NODE_WIDTH 200
