@@ -102,7 +102,20 @@ class ILIconButton : public ILGUIObject
 			ofPopMatrix();
 			ofPopStyle();
 		}
-		
+	
+		//-----------------------------------------------------
+		/** \brief Update Position (override)
+			* @param x : x position.
+			* @param y : y position.
+			*
+			* This method changes the position of the element.
+		*/
+		//-----------------------------------------------------
+		void updateBox(int x,int y)
+		{
+			box.setPosition(x,y);
+		}
+	
 		//-----------------------------------------------------
 		/** \brief Mouse Pressed
 			* @param e : Mouse Events.
