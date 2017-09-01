@@ -246,6 +246,7 @@ class ofApp : public ofBaseApp
 		PatchCord *newPatchCord;
 		int patchCordIdentifier;
 		int *nextNodesId;
+		ofxCenteredTrueTypeFont *nodeFont;
 
 		CustomTimer removeTemporaryPatchCordTimer;
 

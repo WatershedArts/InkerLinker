@@ -16,6 +16,9 @@ void ofApp::setup()
 	ofEnableAntiAliasing();
 	ofSetCircleResolution(20);
 	
+	
+	nodeFont = new ofxCenteredTrueTypeFont();
+	nodeFont->load("SF-Pro-Text-Medium.otf", 10,true,true,true);
 }
 
 //--------------------------------------------------------------
