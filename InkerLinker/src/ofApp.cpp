@@ -1020,6 +1020,7 @@ int ofApp::getNearestSnapSize(int numToRound, int multiple)
 //--------------------------------------------------------------
 void ofApp::drawBackground()
 {
+	ofBackgroundGradient(IL_BACKGROUND_COLOR_1, IL_BACKGROUND_COLOR_2,OF_GRADIENT_CIRCULAR);
 	ofPushStyle();
 	ofSetColor(255);
 	for (int y = 1; y < noOfYPoints; y++)
