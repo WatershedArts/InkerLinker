@@ -5,6 +5,8 @@
 #include "ILGUI.h"
 #include "TouchBoardManager.h"
 #include "PatchCordManager.h"
+#include "CustomTimer.h"
+#include "Nodes.h"
 
 class ofApp : public ofBaseApp
 {
@@ -205,7 +207,7 @@ class ofApp : public ofBaseApp
 		void clearContexts();
 	
 		#pragma mark - IL_TOUCH_BOARD
-	
+		//-----------------------------------------------------
 		TouchBoardManager touchBoardManager;
 	
 		//-----------------------------------------------------
