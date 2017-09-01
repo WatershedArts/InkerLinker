@@ -110,7 +110,7 @@ class BaseNode
 		//-----------------------------------------------------
 		virtual void addMouseAndCloseListeners()
 		{
-			closeNode = new ILIconButton("Close",ofRectangle(header.getRight()-(GUI_BUTTON_WIDTH/2),header.getCenter().y-(GUI_BUTTON_HEIGHT/4),(GUI_BUTTON_WIDTH/2)-(GUI_PADDING_X*2),(GUI_BUTTON_HEIGHT/2)-(GUI_PADDING_X*2)),IL_ICON_CROSS);
+			closeNode = new ILIconButton("Close",ofRectangle(header.getRight()-(GUI_BUTTON_WIDTH/2),header.getCenter().y-(GUI_BUTTON_HEIGHT/4),(GUI_BUTTON_WIDTH/2)-(GUI_PADDING_X*2),(GUI_BUTTON_HEIGHT/2)-(GUI_PADDING_X*2)),IL_ICON_CROSS,0,IL_DANGER_COLOR,IL_WARNING_COLOR);
 			
 			closeNode->setEnabled(true);
 			ofAddListener(closeNode->buttonPushed, this, &BaseNode::closeNodeEvent);
