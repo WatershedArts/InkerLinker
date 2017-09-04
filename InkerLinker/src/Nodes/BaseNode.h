@@ -149,7 +149,6 @@ class BaseNode
 		{
 			this->noOfPorts = noOfPorts;
 			spacing = (box.height-header.height) / (20 + 5);
-		
 			for(int i = 0; i < noOfPorts; i++)
 			{
 				ports.push_back(Port(box.getLeft()-20,header.getBottomLeft().y+spacing+(i*(20+spacing)),i,*this->id,portNames[i]));
