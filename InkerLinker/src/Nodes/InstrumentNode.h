@@ -10,6 +10,7 @@
 #define InstrumentNode_h
 
 #include "BaseNode.h"
+#include "ofxAvUtils.h"
 
 class InstrumentNode : public BaseNode
 {
@@ -49,20 +50,23 @@ class InstrumentNode : public BaseNode
 
 			header = ofRectangle(box.x, box.y,box.width, 23);
 
-			for(int i = 0; i < noOfPorts; i++)
+			for(int i = 0; i < this->noOfPorts; i++)
 			{
 				this->portNames.push_back("Action " + ofToString(i));
 			}
 
-			generatePorts(noOfPorts);
+			generatePorts(this->noOfPorts);
 
+			
 			for (int i = 0; i < filePaths.size(); i++)
 			{
 				ofSoundPlayer s;
 				s.load(filePaths[i]);
 				s.setMultiPlay(true);
-				players[i] = s;
+				players.push_back(s);
 			}
+			
+			loadSounds(filePaths);
 		}
 
 		//-----------------------------------------------------
@@ -93,13 +97,13 @@ class InstrumentNode : public BaseNode
 
 			header = ofRectangle(box.x, box.y,box.width, 23);
 
-			for (int i = 0; i < filePaths.size(); i++)
-			{
-				ofSoundPlayer s;
-				s.load(filePaths[i]);
-				s.setMultiPlay(true);
-				players[i] = s;
-			}
+//			for (int i = 0; i < filePaths.size(); i++)
+//			{
+//				ofSoundPlayer s;
+//				s.load(filePaths[i]);
+//				s.setMultiPlay(true);
+//				players[i] = s;
+//			}
 		}
 
 		//-----------------------------------------------------
@@ -111,14 +115,64 @@ class InstrumentNode : public BaseNode
 		void draw()
 		{
 			BaseNode::draw();
+
+			for(int i = 0; i < fbo.size(); i++)
+			{
+				fbo[i].begin();
+				ofClear(0);
+				ofSetColor(0);
+				ofFill();
+				waveform[i].draw();
+				ofSetColor(ofColor::green);
+				float pos = ofMap(players[i].getPosition(),0.0,1.0,0,300);
+				ofSetLineWidth(2);
+				ofDrawLine(pos, 0, pos, 100);
+				fbo[i].end();
+			}
 			ofPushStyle();
 			ofSetColor(255);
 			ofFill();
-
-			ofPopStyle();
+			
+			int elementHeight = ((box.height-header.height)-2)/fbo.size();
+			for(int i = 0; i < fbo.size(); i++)
+			{
+				fbo[i].draw(box.x+2, header.getBottom()+(i*elementHeight),box.width-4,elementHeight);
+			}
+//			(box.height-header.height/5)-4
+		
 			BaseNode::drawTooltips();
+			ofPopStyle();
+//			BaseNode::drawTooltips();
 		}
 
+		//-----------------------------------------------------
+		/** \brief Load Sound
+		* @param filePath : file to load
+		*
+		* Load the sound and generate waveform
+		*/
+		//-----------------------------------------------------
+		void loadSounds(vector<string> filePath)
+		{
+			
+			for(int i = 0; i < filePath.size(); i++)
+			{
+				
+				ofMesh m = ofxAvUtils::waveformAsMesh(filePath[i], 150, this->box.width-4, this->box.height-25);
+				
+				waveform.push_back(m);
+				
+				ofFbo f;
+				f.allocate(this->box.width-10,this->box.height-header.height);
+				f.begin();
+				ofClear(0);
+				f.end();
+				
+				fbo.push_back(f);
+			}
+//			trackDuration = ofxAvUtils::duration(filePath);
+		}
+	
 		//-----------------------------------------------------
 		/** \brief Trigger Port
 			* @param i : A integer of which event to trigger.
@@ -146,6 +200,8 @@ class InstrumentNode : public BaseNode
 
 	private:
 		vector<string> filePaths;
-		ofSoundPlayer players[5];
+		vector<ofSoundPlayer> players;
+		vector<ofFbo> fbo;
+		vector<ofMesh> waveform;
 };
 #endif /* InstrumentNode_h */
