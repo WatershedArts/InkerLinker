@@ -178,7 +178,12 @@ void ofApp::windowResized(int w, int h)
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg)
 {
-
+	debuggui->addMessageToLog(msg.message);
+	if(ofIsStringInString(msg.message, "Err"))
+	{
+		ILSvgToggle* ret = (ILSvgToggle*)(gui->getGuiItemByName("Debug"));
+		ret->setPulsing();
+	}
 }
 
 //--------------------------------------------------------------
