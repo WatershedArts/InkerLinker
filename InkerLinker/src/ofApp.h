@@ -388,4 +388,5 @@ class ofApp : public ofBaseApp
 	
 		int noOfXPoints;
 		int noOfYPoints;
+		ofxCenteredTrueTypeFont *titleFont;
 };

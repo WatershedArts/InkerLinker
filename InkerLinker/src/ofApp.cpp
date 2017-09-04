@@ -19,6 +19,8 @@ void ofApp::setup()
 	
 	nodeFont = new ofxCenteredTrueTypeFont();
 	nodeFont->load("SF-Pro-Text-Medium.otf", 10,true,true,true);
+	titleFont = new ofxCenteredTrueTypeFont();
+	titleFont->load("SF-Pro-Text-Regular.otf", 15,true,true,true);
 }
 
 //--------------------------------------------------------------
@@ -1351,8 +1353,11 @@ void ofApp::drawBottomBar()
 	ofPushStyle();
 	ofFill();
 	ofSetColor(IL_DEFAULT_COLOR);
-	ofDrawRectRounded(0,ofGetHeight()-(30), ofGetWidth(), 30,2);
+	ofDrawRectRounded(0,ofGetHeight()-(30), ofGetWidth(), 30,1);
 	ofSetColor(255);
-//	font->drawString("InkerLinker",10,ofGetHeight()-font->getStringBoundingBox("InkerLinker", 0, 0).height/2);
+	
+	int centerY = ((ofGetHeight()-30)/2) - (titleFont->getStringBoundingBox("Inkerlinker", 0, 0).height/2);
+	
+	titleFont->drawStringCentered("Inkerlinker", 100, ofGetHeight()-15);
 	ofPopStyle();
 }
