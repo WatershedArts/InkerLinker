@@ -836,7 +836,7 @@ void ofApp::iconButtonEvents(string &val)
 		{
 			if (extChecker == types[i])
 			{
-				imageCaroselNodeGui->addNewImageData(path);
+				instrumentNodeGui->addNewInstrumentData(path);
 				return;
 			}
 			i++;
