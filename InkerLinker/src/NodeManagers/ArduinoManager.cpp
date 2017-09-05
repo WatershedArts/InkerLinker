@@ -89,7 +89,6 @@ void ArduinoManager::setPinMode(int pin,string mode)
     {
         ard.sendServoAttach(pin);
     }
-    
 }
 
 //--------------------------------------------------------------

@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "InterfacesOSX.h"
+#include "ILConstants.h"
 
 class ArduinoManager
 {

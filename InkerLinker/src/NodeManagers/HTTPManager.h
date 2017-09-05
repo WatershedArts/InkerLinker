@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxHttpUtils.h"
+#include "ILConstants.h"
 
 class HTTPManager
 {

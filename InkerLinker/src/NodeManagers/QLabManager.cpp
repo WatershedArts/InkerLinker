@@ -34,11 +34,8 @@ QLabManager::QLabManager(string host, int port)
 void QLabManager::sendMessage(QLabData evt)
 {
 	ofxOscMessage e;
-	e.setAddress(evt.address);
-	for (int i = 0; i < evt.value.size(); i++)
-	{
-		e.addStringArg(evt.value[i]);
-	}
-	
+	string str = "/cue/"+evt.cue+"/"+evt.type;
+	e.setAddress(str);
+
 	sender.sendMessage(e);
 }

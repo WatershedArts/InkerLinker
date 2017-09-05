@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include <curl/curl.h>
+#include "ILConstants.h"
 
 #define CLOUD_API "https://api-http.littlebitscloud.cc/v2/devices/"
 
