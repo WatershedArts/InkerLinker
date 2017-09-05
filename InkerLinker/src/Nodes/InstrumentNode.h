@@ -39,6 +39,7 @@ class InstrumentNode : public BaseNode
 		//-----------------------------------------------------
 		InstrumentNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<string> filePaths)
 		{
+			type = IL_INSTRUMENT_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
@@ -85,8 +86,8 @@ class InstrumentNode : public BaseNode
 		//-----------------------------------------------------
 		InstrumentNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<string> filePaths)
 		{
+			type = IL_INSTRUMENT_NODE;
 			addMouseAndCloseListeners();
-
 			this->id = id;
 			this->font = font;
 			this->name = name;
@@ -138,11 +139,9 @@ class InstrumentNode : public BaseNode
 			{
 				fbo[i].draw(box.x+2, header.getBottom()+(i*elementHeight),box.width-4,elementHeight);
 			}
-//			(box.height-header.height/5)-4
 		
 			BaseNode::drawTooltips();
 			ofPopStyle();
-//			BaseNode::drawTooltips();
 		}
 
 		//-----------------------------------------------------
@@ -154,14 +153,10 @@ class InstrumentNode : public BaseNode
 		//-----------------------------------------------------
 		void loadSounds(vector<string> filePath)
 		{
-			
 			for(int i = 0; i < filePath.size(); i++)
 			{
-				
 				ofMesh m = ofxAvUtils::waveformAsMesh(filePath[i], 150, this->box.width-4, this->box.height-25);
-				
 				waveform.push_back(m);
-				
 				ofFbo f;
 				f.allocate(this->box.width-10,this->box.height-header.height);
 				f.begin();
