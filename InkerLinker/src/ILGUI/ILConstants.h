@@ -92,6 +92,26 @@ enum IL_DATA_TYPE
 	IL_VIDEO_DATA
 };
 
+//-----------------------------------------------------
+/** \brief Node Type */
+//-----------------------------------------------------
+enum IL_NODE_TYPE
+{
+	IL_BASE_NODE = 0,
+	IL_ARDUINO_NODE,
+	IL_CLOUD_BIT_NODE,
+	IL_COLOUR_NODE,
+	IL_HTTP_NODE,
+	IL_IMAGE_NODE,
+	IL_INSTRUMENT_NODE,
+	IL_OSC_NODE,
+	IL_QLAB_NODE,
+	IL_SERIAL_NODE,
+	IL_SOUND_NODE,
+	IL_TIMER_NODE,
+	IL_VIDEO_NODE
+};
+
 struct ColourPickerEvent
 {
 	string name;
