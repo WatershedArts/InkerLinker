@@ -171,7 +171,6 @@ class ILTextInput : public ILGUIObject
 						te.text = typeStr;
 
 						ofNotifyEvent(guiEvent, te, this);
-//						typeStr = "";
 						bHasFocus = false;
 						bFirst = true;
 					}
@@ -182,7 +181,8 @@ class ILTextInput : public ILGUIObject
 							typeStr.clear();
 							bFirst = false;
 						}
-						ofAppendUTF8(typeStr,e.key);
+						typeStr += e.key;
+//						ofAppendUTF8(typeStr,e.key);
 					}
 				}
 			}
