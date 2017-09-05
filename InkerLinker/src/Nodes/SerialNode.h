@@ -38,6 +38,7 @@ class SerialNode : public BaseNode
 		//-----------------------------------------------------
 		SerialNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<string> commands)
 		{
+			type = IL_SERIAL_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
@@ -69,8 +70,8 @@ class SerialNode : public BaseNode
 		//-----------------------------------------------------
 		SerialNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<string> commands)
 		{
+			type = IL_SERIAL_NODE;
 			addMouseAndCloseListeners();
-
 			this->id = id;
 			this->font = font;
 			this->name = name;

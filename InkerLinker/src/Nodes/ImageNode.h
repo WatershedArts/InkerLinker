@@ -40,7 +40,7 @@ class ImageNode : public BaseNode
 		ImageNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<string> filePaths)
 		{
 			portNames = {"Next", "Previous"};
-
+			type = IL_IMAGE_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
@@ -86,8 +86,8 @@ class ImageNode : public BaseNode
 		//-----------------------------------------------------
 		ImageNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<string> filePaths)
 		{
+			type = IL_IMAGE_NODE;
 			addMouseAndCloseListeners();
-
 			this->id = id;
 			this->font = font;
 			this->name = name;

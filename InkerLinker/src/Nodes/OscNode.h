@@ -37,6 +37,7 @@ class OscNode : public BaseNode
 		//-----------------------------------------------------
 		OscNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<OscData> oscData)
 		{
+			type = IL_OSC_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
@@ -69,6 +70,7 @@ class OscNode : public BaseNode
 		//-----------------------------------------------------
 		OscNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<OscData> oscData)
 		{
+			type = IL_OSC_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;

@@ -51,6 +51,7 @@ class BaseNode
 		//-----------------------------------------------------
 		BaseNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,int noOfPorts)
 		{
+			type = IL_BASE_NODE;
 			bCanMoveNode = false;
 			bCanResizeNode = false;
 			bIsNodeSizeLocked = false;
@@ -87,6 +88,7 @@ class BaseNode
 		//-----------------------------------------------------
 		BaseNode(ofRectangle box,ofxCenteredTrueTypeFont *font, string name, int *id,vector<Port> ports)
 		{
+			type = IL_BASE_NODE;
 			bCanMoveNode = false;
 			bCanResizeNode = false;
 			bIsNodeSizeLocked = false;
@@ -455,6 +457,18 @@ class BaseNode
 		}
 	
 		//-----------------------------------------------------
+		/** \brief Get the Type of Node
+			* @return type : Number of Ports.
+			*
+			* This method returns the type of Node.
+		*/
+		//-----------------------------------------------------
+		IL_NODE_TYPE getType()
+		{
+			return type;
+		}
+	
+		//-----------------------------------------------------
 		/** \brief Get the Ports
 			* @return ports : vector of Ports.
 			*
@@ -544,6 +558,8 @@ class BaseNode
 		ofxCenteredTrueTypeFont *font;
 		ILIconButton *closeNode;
 		ofRectangle resizeNode;
+		IL_NODE_TYPE type;
+	
 	private:
 };
 

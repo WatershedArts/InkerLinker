@@ -37,7 +37,8 @@ class CloudBitNode : public BaseNode
 		*/
 		//-----------------------------------------------------
 		CloudBitNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<CloudBitData> cloudBitData)
-		{			
+		{
+			type = IL_CLOUD_BIT_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
@@ -73,8 +74,8 @@ class CloudBitNode : public BaseNode
 		//-----------------------------------------------------
 		CloudBitNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<CloudBitData> cloudBitData)
 		{
+			type = IL_CLOUD_BIT_NODE;
 			addMouseAndCloseListeners();
-			
 			this->id = id;
 			this->font = font;
 			this->name = name;

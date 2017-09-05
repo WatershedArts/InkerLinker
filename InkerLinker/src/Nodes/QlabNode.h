@@ -36,6 +36,7 @@ class QlabNode : public BaseNode
 		//-----------------------------------------------------
 		QlabNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<QLabData> qlabData)
 		{
+			type = IL_QLAB_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
@@ -69,8 +70,8 @@ class QlabNode : public BaseNode
 		//-----------------------------------------------------
 		QlabNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<QLabData> qlabData)
 		{
+			type = IL_QLAB_NODE;
 			addMouseAndCloseListeners();
-
 			this->id = id;
 			this->font = font;
 			this->name = name;

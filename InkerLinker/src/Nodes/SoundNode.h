@@ -39,6 +39,7 @@ class SoundNode : public BaseNode
 		//-----------------------------------------------------
 		SoundNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,string filePath)
 		{
+			type = IL_SOUND_NODE;
 			this->portNames = {"Play", "Stop", "Reset"};
 			bIsNodeSizeLocked = true;
 			addMouseAndCloseListeners();
@@ -79,6 +80,7 @@ class SoundNode : public BaseNode
 		//-----------------------------------------------------
 		SoundNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,string filePath)
 		{
+			type = IL_SOUND_NODE;
 			addMouseAndCloseListeners();
 			bIsNodeSizeLocked = true;
 			this->id = id;

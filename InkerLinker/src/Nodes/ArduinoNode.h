@@ -38,6 +38,7 @@ class ArduinoNode : public BaseNode
 		//-----------------------------------------------------
 		ArduinoNode(ofRectangle box,ofxCenteredTrueTypeFont *font, string name, int *id,vector<ArduinoData> arduinoData)
 		{
+			type = IL_ARDUINO_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
@@ -70,6 +71,7 @@ class ArduinoNode : public BaseNode
 		//-----------------------------------------------------
 		ArduinoNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<ArduinoData> arduinoData)
 		{
+			type = IL_ARDUINO_NODE;
 			addMouseAndCloseListeners();
 			
 			this->id = id;

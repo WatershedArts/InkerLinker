@@ -37,8 +37,8 @@ public:
 	//-----------------------------------------------------
 	VideoNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,string filePath)
 	{
+		type = IL_VIDEO_NODE;
 		this->portNames = {"Play", "Stop", "Reset"};
-
 		addMouseAndCloseListeners();
 		this->id = id;
 		this->font = font;
@@ -73,8 +73,8 @@ public:
 	//-----------------------------------------------------
 	VideoNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,string filePath)
 	{
+		type = IL_VIDEO_NODE;
 		addMouseAndCloseListeners();
-
 		this->id = id;
 		this->font = font;
 		this->name = name;

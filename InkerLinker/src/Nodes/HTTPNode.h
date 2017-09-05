@@ -37,6 +37,7 @@ class HTTPNode : public BaseNode
 		//-----------------------------------------------------
 		HTTPNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<HTTPData> httpData)
 		{
+			type = IL_HTTP_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
@@ -70,8 +71,8 @@ class HTTPNode : public BaseNode
 		//-----------------------------------------------------
 		HTTPNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<HTTPData> httpData)
 		{
+			type = IL_HTTP_NODE;
 			addMouseAndCloseListeners();
-
 			this->id = id;
 			this->font = font;
 			this->name = name;

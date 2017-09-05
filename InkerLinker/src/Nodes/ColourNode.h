@@ -38,6 +38,7 @@ class ColourNode : public BaseNode
 		//-----------------------------------------------------
 		ColourNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<ofColor> colours)
 		{
+			type = IL_COLOUR_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
 			this->font = font;
@@ -75,8 +76,8 @@ class ColourNode : public BaseNode
 		//-----------------------------------------------------
 		ColourNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector <ofColor> colours)
 		{
+			type = IL_COLOUR_NODE;
 			addMouseAndCloseListeners();
-			
 			this->id = id;
 			this->font = font;
 			this->name = name;
