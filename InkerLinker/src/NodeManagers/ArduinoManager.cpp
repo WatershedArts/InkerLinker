@@ -12,6 +12,7 @@
 ArduinoManager::ArduinoManager()
 {
     findArduino();
+	ofAddListener(ofEvents().update, this, &ArduinoManager::updateArduino);
 }
 
 //--------------------------------------------------------------
@@ -43,6 +44,7 @@ void ArduinoManager::findArduino()
             
             ard.connect(_arduinoName,57600);
             ofAddListener(ard.EInitialized, this, &ArduinoManager::setupArduino);
+//			ofAddListener(ofEvents().update, this, &ArduinoManager::updateArduino);
             break;
         }
     }
@@ -51,7 +53,7 @@ void ArduinoManager::findArduino()
 }
 
 //--------------------------------------------------------------
-void ArduinoManager::updateArduino()
+void ArduinoManager::updateArduino(ofEventArgs &event)
 {
     ard.update();
 }
@@ -59,7 +61,7 @@ void ArduinoManager::updateArduino()
 //--------------------------------------------------------------
 void ArduinoManager::setDigital(int pin,bool val)
 {
-    ard.sendDigital(pin,val);
+	ard.sendDigital(pin, val);
 }
 
 //--------------------------------------------------------------
@@ -77,7 +79,8 @@ void ArduinoManager::setServo(int pin,int val)
 //--------------------------------------------------------------
 void ArduinoManager::setPinMode(int pin,string mode)
 {
-    if(mode == "Digital")
+	cout << "Pin Mode Set" << endl;
+    if(mode == "DIGITAL")
     {
         ard.sendDigitalPinMode(pin, ARD_OUTPUT);
     }
@@ -85,10 +88,11 @@ void ArduinoManager::setPinMode(int pin,string mode)
     {
         ard.sendDigitalPinMode(pin, ARD_PWM);
     }
-    else if(mode == "Servo")
+    else if(mode == "SERVO")
     {
         ard.sendServoAttach(pin);
     }
+	ard.update();
 }
 
 //--------------------------------------------------------------
@@ -113,6 +117,8 @@ void ArduinoManager::setupArduino(const int & version)
     // Listen for changes on the digital and analog pins
     ofAddListener(ard.EDigitalPinChanged, this, &ArduinoManager::digitalPinChanged);
     ofAddListener(ard.EAnalogPinChanged, this, &ArduinoManager::analogPinChanged);
+	
+//	ard.sendDigitalPinMode(13, ARD_OUTPUT);
 }
 
 //--------------------------------------------------------------

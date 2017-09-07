@@ -61,6 +61,12 @@ enum IL_GUI_ICON_TYPE
 #define IL_MAX_NODE_WIDTH 500
 #define IL_MAX_NODE_HEIGHT 500
 
+#define ARDUINO_UNO_PID 67
+#define ARDUINO_UNO_VID 9025
+
+#define ARDUINO_MEGA_PID 66
+#define ARDUINO_MEGA_VID 9025
+
 //-----------------------------------------------------
 /** \brief GUI Constants 
 	* @param s_Class : class the error is coming from

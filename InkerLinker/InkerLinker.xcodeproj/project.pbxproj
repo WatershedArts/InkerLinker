@@ -61,7 +61,14 @@
 		630CACFC1F586B84004326A6 /* TouchBoardManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A5FB1F581DA40004ED90 /* TouchBoardManager.cpp */; };
 		630CACFE1F5960A6004326A6 /* CustomTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A5F71F581D970004ED90 /* CustomTimer.cpp */; };
 		633AFFDB4EC6674D34F0EF7D /* IPAddressRange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5A4362497FA77DF9B5A19 /* IPAddressRange.cpp */; };
+		635E78561F5F003F00232121 /* CloudBitManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A6131F581DAC0004ED90 /* CloudBitManager.cpp */; };
+		635E78591F5F005700232121 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 635E78581F5F005700232121 /* libcurl.tbd */; };
+		635E785A1F5F02C100232121 /* ArduinoManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A6111F581DAC0004ED90 /* ArduinoManager.cpp */; };
 		63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DF87D612C5AAE17AAFA6C0 /* ofxXmlSettings.cpp */; };
+		63C98F581F5D5FCF00A68422 /* QLabManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A61A1F581DAC0004ED90 /* QLabManager.cpp */; };
+		63C98F591F5D664400A68422 /* OscManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A6181F581DAC0004ED90 /* OscManager.cpp */; };
+		63C98F5A1F5D754600A68422 /* SerialManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A61C1F581DAC0004ED90 /* SerialManager.cpp */; };
+		63C98F5B1F5D923A00A68422 /* HTTPManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A6151F581DAC0004ED90 /* HTTPManager.cpp */; };
 		640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2FAC65C491D4231379F3298 /* ofxOscReceiver.cpp */; };
 		66A80FD312926DEB8C9FE7F6 /* ByteBufferUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FE5B3B19544657B6F9CCCA03 /* ByteBufferUtils.cpp */; };
 		66CA411C5A9664E27326BF36 /* ofxTCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C085E327DAB912CFA2A443D /* ofxTCPServer.cpp */; };
@@ -317,6 +324,7 @@
 		60F63F5C68476F0C9095B247 /* URIEncoding.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = URIEncoding.cpp; path = ../../../addons/ofxIO/libs/ofxIO/src/URIEncoding.cpp; sourceTree = SOURCE_ROOT; };
 		61233675C0B2D7AFCF5E88F7 /* WebSocketExtensions.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = WebSocketExtensions.h; path = ../../../addons/ofxHTTP/libs/ofxHTTP/include/ofx/HTTP/WebSocketExtensions.h; sourceTree = SOURCE_ROOT; };
 		61313493CDB52744E22A604D /* json-forwards.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "json-forwards.h"; path = "../../../addons/ofxJSON/libs/jsoncpp/include/json/json-forwards.h"; sourceTree = SOURCE_ROOT; };
+		635E78581F5F005700232121 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		637025507E2C0C681E27016B /* FileSystemRoute.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FileSystemRoute.cpp; path = ../../../addons/ofxHTTP/libs/ofxHTTP/src/FileSystemRoute.cpp; sourceTree = SOURCE_ROOT; };
 		63A47AC60FFAFC3BF093EC0F /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OscOutboundPacketStream.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.cpp; sourceTree = SOURCE_ROOT; };
 		63D7A5F71F581D970004ED90 /* CustomTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CustomTimer.cpp; sourceTree = "<group>"; };
@@ -579,6 +587,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635E78591F5F005700232121 /* libcurl.tbd in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -941,6 +950,14 @@
 				A38A722D40B48826A2DC9FA7 /* src */,
 			);
 			name = ofxMediaType;
+			sourceTree = "<group>";
+		};
+		635E78571F5F005700232121 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				635E78581F5F005700232121 /* libcurl.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		63D7A5F61F581D970004ED90 /* Utils */ = {
@@ -1729,6 +1746,7 @@
 				BB4B014C10F69532006C3DED /* addons */,
 				6948EE371B920CB800B5AC1A /* local_addons */,
 				E4B69B5B0A3A1756003C02F2 /* InkerLinkerDebug.app */,
+				635E78571F5F005700232121 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1960,6 +1978,12 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				635E785A1F5F02C100232121 /* ArduinoManager.cpp in Sources */,
+				635E78561F5F003F00232121 /* CloudBitManager.cpp in Sources */,
+				63C98F5B1F5D923A00A68422 /* HTTPManager.cpp in Sources */,
+				63C98F5A1F5D754600A68422 /* SerialManager.cpp in Sources */,
+				63C98F591F5D664400A68422 /* OscManager.cpp in Sources */,
+				63C98F581F5D5FCF00A68422 /* QLabManager.cpp in Sources */,
 				630CACFC1F586B84004326A6 /* TouchBoardManager.cpp in Sources */,
 				630CACFE1F5960A6004326A6 /* CustomTimer.cpp in Sources */,
 				630CACF91F585FDC004326A6 /* ILGUI.cpp in Sources */,

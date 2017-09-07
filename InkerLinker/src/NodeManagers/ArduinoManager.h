@@ -46,7 +46,7 @@ class ArduinoManager
 		//-----------------------------------------------------
 		/** \brief Update the Arduino */
 		//-----------------------------------------------------
-		void updateArduino();
+		void updateArduino(ofEventArgs &event);
 
 		//-----------------------------------------------------
 		/** \brief Set the Digital
