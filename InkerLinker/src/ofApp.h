@@ -10,6 +10,7 @@
 #include "NodeManagers.h"
 #include "PaletteSaver.h"
 #include "PaletteLoader.h"
+#include "HelpServer.h"
 
 
 class ofApp : public ofBaseApp
@@ -62,6 +63,8 @@ class ofApp : public ofBaseApp
 		POSTData tmpPostData;
 		QLabData tmpQLabData;
 		OscData tmpOscData;
+	
+		HelpServer *helpServer;
 	
 		ofColor tmpColor;
 		string tmpImageFile;

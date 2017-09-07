@@ -324,6 +324,7 @@
 		60F63F5C68476F0C9095B247 /* URIEncoding.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = URIEncoding.cpp; path = ../../../addons/ofxIO/libs/ofxIO/src/URIEncoding.cpp; sourceTree = SOURCE_ROOT; };
 		61233675C0B2D7AFCF5E88F7 /* WebSocketExtensions.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = WebSocketExtensions.h; path = ../../../addons/ofxHTTP/libs/ofxHTTP/include/ofx/HTTP/WebSocketExtensions.h; sourceTree = SOURCE_ROOT; };
 		61313493CDB52744E22A604D /* json-forwards.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "json-forwards.h"; path = "../../../addons/ofxJSON/libs/jsoncpp/include/json/json-forwards.h"; sourceTree = SOURCE_ROOT; };
+		6310A7521F619EB900F3C22F /* HelpServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpServer.h; sourceTree = "<group>"; };
 		635E78581F5F005700232121 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		637025507E2C0C681E27016B /* FileSystemRoute.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FileSystemRoute.cpp; path = ../../../addons/ofxHTTP/libs/ofxHTTP/src/FileSystemRoute.cpp; sourceTree = SOURCE_ROOT; };
 		63A47AC60FFAFC3BF093EC0F /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OscOutboundPacketStream.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.cpp; sourceTree = SOURCE_ROOT; };
@@ -1004,6 +1005,7 @@
 		63D7A60D1F581DAC0004ED90 /* IO */ = {
 			isa = PBXGroup;
 			children = (
+				6310A7521F619EB900F3C22F /* HelpServer.h */,
 				63D7A60E1F581DAC0004ED90 /* PaletteLoader.h */,
 				63D7A60F1F581DAC0004ED90 /* PaletteSaver.h */,
 			);

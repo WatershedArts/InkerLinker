@@ -22,12 +22,15 @@ void ofApp::setup()
 	nodeFont->load("SF-Pro-Text-Medium.otf", 10,true,true,true);
 	titleFont = new ofxCenteredTrueTypeFont();
 	titleFont->load("SF-Pro-Text-Regular.otf", 15,true,true,true);
+	
+	helpServer = new HelpServer();
 }
 
 //--------------------------------------------------------------
 void ofApp::exit()
 {
 	deleteGuis();
+	helpServer->close();
 }
 
 //--------------------------------------------------------------
@@ -632,6 +635,7 @@ void ofApp::svgButtonEvents(string &val)
 	else if(val == "Info")
 	{
 		// Open the Web Server
+		helpServer->open();
 	}
 	else if(val == "Confirm Arduino Node")
 	{
