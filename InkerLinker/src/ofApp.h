@@ -7,6 +7,7 @@
 #include "PatchCordManager.h"
 #include "CustomTimer.h"
 #include "Nodes.h"
+#include "NodeManagers.h"
 
 class ofApp : public ofBaseApp
 {
@@ -361,6 +362,80 @@ class ofApp : public ofBaseApp
 		*/
 		//-----------------------------------------------------
 		void attachListenersToNode(BaseNode* node);
+	
+		#pragma mark - IL_NODE_MANAGERS
+	
+		QLabManager *qlabManager;
+		OscManager *oscManager;
+		SerialManager *serialManager;
+		HTTPManager *httpManager;
+		CloudBitManager *cloudBitManager;
+		ArduinoManager *arduinoManager;
+	
+		//-----------------------------------------------------
+		/** \brief Setup the Node Managers */
+		//-----------------------------------------------------
+		void setupNodeManagers();
+	
+		//-----------------------------------------------------
+		/** \brief Listener for Qlab Messages
+			* @param qlabdata : qlab data.
+			*
+			* This method listens for qlab messages from the 
+			* qlab nodes and pushes them out of the manager.
+		*/
+		//-----------------------------------------------------
+		void qlabEventListener(QLabData &qlabdata);
+	
+		//-----------------------------------------------------
+		/** \brief Listener for OSC Messages
+			* @param oscdata : osc data.
+			*
+			* This method listens for osc messages from the
+			* osc nodes and pushes them out of the manager.
+		*/
+		//-----------------------------------------------------
+		void oscEventListener(OscData &oscdata);
+	
+		//-----------------------------------------------------
+		/** \brief Listener for Serial Messages
+			* @param serialdata : serial data.
+			*
+			* This method listens for serial messages from the
+			* serial nodes and pushes them out of the manager.
+		*/
+		//-----------------------------------------------------
+		void serialEventListener(string &serialdata);
+	
+		//-----------------------------------------------------
+		/** \brief Listener for HTTP Messages
+			* @param httpdata : http data.
+			*
+			* This method listens for http messages from the
+			* http nodes and pushes them out of the manager.
+		*/
+		//-----------------------------------------------------
+		void httpEventListener(HTTPData &httpdata);
+	
+		//-----------------------------------------------------
+		/** \brief Listener for Cloud Bit Messages
+			* @param cloudbitdata : cloud bit data.
+			*
+			* This method listens for cloud messages from the
+			* cloud nodes and pushes them out of the manager.
+		*/
+		//-----------------------------------------------------
+		void cloudBitEventListener(CloudBitData &cloudbitdata);
+	
+		//-----------------------------------------------------
+		/** \brief Listener for Cloud Bit Messages
+			* @param cloudbitdata : cloud bit data.
+			*
+			* This method listens for cloud messages from the
+			* cloud nodes and pushes them out of the manager.
+		*/
+		//-----------------------------------------------------
+		void arduinoEventListener(ArduinoData &arduinobitdata);
 	
 		#pragma mark - IL_MISC
 		//-----------------------------------------------------

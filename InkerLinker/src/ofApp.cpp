@@ -8,6 +8,7 @@ void ofApp::setup()
 	
 	setupGuis();
 	setupTouchBoard();
+	setupNodeManagers();
 	patchCordManager = new PatchCordManager();
 	patchCordIdentifier = 0;
 	
@@ -1109,6 +1110,7 @@ void ofApp::radioEvents(RadioEvent &val)
 	{
 		vector<string> mode = ofSplitString(val.value, ":");
 		tmpArduinoData.mode = mode[0];
+		arduinoManager->setPinMode(ofToInt(tmpArduinoData.pin), tmpArduinoData.mode);
 	}
 }
 
@@ -1303,12 +1305,130 @@ void ofApp::attachListenersToNode(BaseNode *node)
 	ofAddListener(node->attachPatchCord, this, &ofApp::attachPatchCordToPort);
 	ofAddListener(node->removePatchCord, this, &ofApp::removePatchCordFromPort);
 	ofAddListener(node->closedNodeId, this, &ofApp::removeNode);
+	
+	switch (node->getType())
+	{
+		case IL_BASE_NODE: /* No Action Required*/ break;
+		case IL_ARDUINO_NODE:
+		{
+			ArduinoNode *n = (ArduinoNode*)(node);
+			ofAddListener(n->arduinoEvent, this, &ofApp::arduinoEventListener);
+		}
+		break;
+		case IL_CLOUD_BIT_NODE:
+		{
+			CloudBitNode *n = (CloudBitNode*)(node);
+			ofAddListener(n->cloudDataEvent, this, &ofApp::cloudBitEventListener);
+		}
+		break;
+		case IL_COLOUR_NODE: /* No Action Required*/ break;
+		case IL_HTTP_NODE:
+		{
+			HTTPNode *n = (HTTPNode*)(node);
+			ofAddListener(n->httpDataEvent, this, &ofApp::httpEventListener);
+		}
+		break;
+		case IL_IMAGE_NODE: /* No Action Required*/ break;
+		case IL_INSTRUMENT_NODE: /* No Action Required*/ break;
+		case IL_OSC_NODE:
+		{
+			OscNode *n = (OscNode*)(node);
+			ofAddListener(n->oscEvent, this, &ofApp::oscEventListener);
+		}
+		break;
+		case IL_QLAB_NODE:
+		{
+			QlabNode *n = (QlabNode*)(node);
+			ofAddListener(n->qlabEvent, this, &ofApp::qlabEventListener);
+		}
+		break;
+		case IL_SERIAL_NODE:
+		{
+			SerialNode *n = (SerialNode*)(node);
+			ofAddListener(n->serialEvent, this, &ofApp::serialEventListener);
+		}
+		break;
+		case IL_SOUND_NODE: /* No Action Required*/ break;
+		case IL_TIMER_NODE: /* No Action Required*/ break;
+		case IL_VIDEO_NODE: /* No Action Required*/ break;
+		default: break;
+	}
+	
 }
 
 //--------------------------------------------------------------
 void ofApp::attachListenersToNodes(vector<BaseNode *> nodes)
 {
 	for(auto nod : nodes) { attachListenersToNode(nod); }
+}
+
+#pragma mark - IL_NODE_MANAGERS
+//--------------------------------------------------------------
+void ofApp::setupNodeManagers()
+{
+	qlabManager = new QLabManager("localhost",53000);
+	oscManager = new OscManager("localhost",12345);
+	serialManager = new SerialManager("#",9600);
+	arduinoManager = new ArduinoManager();
+//	serialManager = new SerialManager("/dev/tty.usbmodem1421",9600);
+	httpManager = new HTTPManager();
+	cloudBitManager = new CloudBitManager("deviceID","deviceAccessToken");
+	
+}
+
+//--------------------------------------------------------------
+void ofApp::qlabEventListener(QLabData &qlabdata)
+{
+	qlabManager->sendMessage(qlabdata);
+}
+
+//--------------------------------------------------------------
+void ofApp::oscEventListener(OscData &oscdata)
+{
+	oscManager->sendMessage(oscdata);
+}
+
+//--------------------------------------------------------------
+void ofApp::serialEventListener(string &serialdata)
+{
+	serialManager->sendData(serialdata);
+}
+
+//--------------------------------------------------------------
+void ofApp::httpEventListener(HTTPData &httpdata)
+{
+	httpManager->postEvent(httpdata);
+}
+
+//--------------------------------------------------------------
+void ofApp::cloudBitEventListener(CloudBitData &cloudbitdata)
+{
+	cloudBitManager->performEvent(cloudbitdata);
+}
+
+//--------------------------------------------------------------
+void ofApp::arduinoEventListener(ArduinoData &arduinodata)
+{
+	cout << arduinodata.mode << " " << arduinodata.pin << " " << arduinodata.value << endl;
+	if(arduinodata.mode == "DIGITAL") {
+		if (ofIsStringInString(arduinodata.value, "H")) {
+			cout << "Hot hot hot" << endl;
+			arduinoManager->setDigital(ofToInt(arduinodata.pin),true);
+		}
+		else if (ofIsStringInString(arduinodata.value, "L")) {
+			cout << "Cold Cold Cold" << endl;
+			arduinoManager->setDigital(ofToInt(arduinodata.pin),false);
+		}
+		
+	}
+	else if(arduinodata.mode == "PWM") {
+		int value = ofToInt(arduinodata.value);
+		arduinoManager->setPWM(ofToInt(arduinodata.pin),value);
+	}
+	else if(arduinodata.mode == "SERVO") {
+		int value = ofToInt(arduinodata.value);
+		arduinoManager->setServo(ofToInt(arduinodata.pin),value);
+	}
 }
 
 #pragma mark - IL_MISC
