@@ -24,3 +24,5 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+InkerLinker/bin/data/Here.json
+devserver/test.php
