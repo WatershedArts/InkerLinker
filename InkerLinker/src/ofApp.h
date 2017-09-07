@@ -8,6 +8,9 @@
 #include "CustomTimer.h"
 #include "Nodes.h"
 #include "NodeManagers.h"
+#include "PaletteSaver.h"
+#include "PaletteLoader.h"
+
 
 class ofApp : public ofBaseApp
 {
@@ -314,6 +317,9 @@ class ofApp : public ofBaseApp
 	
 		#pragma mark - IL_NODES
 		//-----------------------------------------------------
+		PaletteSaver paletteSaver;
+		PaletteLoader paletteLoader;
+	
 		vector<BaseNode*> nodes;
 
 		//-----------------------------------------------------

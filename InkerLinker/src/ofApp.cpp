@@ -126,7 +126,7 @@ void ofApp::mouseDragged(int x, int y, int button)
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button)
 {
-
+	
 }
 
 //--------------------------------------------------------------
@@ -793,7 +793,6 @@ void ofApp::iconButtonEvents(string &val)
 	else if(val == "Add HTTP")
 	{
 		httpNodeGui->addNewHTTPData(tmpHttpData);
-		//		tmpHttpData.data.push_back(tmpPostData);
 	}
 	else if(val == "Remove HTTP")
 	{
@@ -1289,13 +1288,21 @@ void ofApp::removeNode(int &nodeId)
 //--------------------------------------------------------------
 void ofApp::loadNodes()
 {
+	string path = ofSystemLoadDialog().filePath;
+	paletteLoader.load(path);
+	patchCordManager->reset();
+	nodes.clear();
+	patchCordManager->addNewPatchCord(paletteLoader.getPatchCords());
+	nodes = paletteLoader.getNodes();
+	
+	attachListenersToNodes(nodes);
 	
 }
 
 //--------------------------------------------------------------
 void ofApp::saveNodes()
 {
-	
+	paletteSaver.save(patchCordManager->getAllPatchCoords(), nodes);
 }
 
 //--------------------------------------------------------------
