@@ -975,7 +975,14 @@ void ofApp::textInputEvents(TextInputEvent &val)
 	}
 	else if(val.name == "Host")
 	{
-		tmpHttpData.hostURL = "http://www." + val.text + "/";
+		if(ofIsStringInString(val.text,"localhost"))
+		{
+			tmpHttpData.hostURL = "http://"+val.text;
+		}
+		else
+		{
+			tmpHttpData.hostURL = "http://www." + val.text;
+		}
 	}
 	else if(val.name == "Extension")
 	{

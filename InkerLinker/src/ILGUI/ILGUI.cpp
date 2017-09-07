@@ -564,6 +564,14 @@ void ILGUI::addNewInstrumentData(string file)
 void ILGUI::addNewOscData(OscData newData)
 {
 	data.oscData.push_back(newData);
+	string cStr = newData.address;
+	
+	for (int i = 0; i < newData.value.size(); i++)
+	{
+		cStr += " " + newData.value[i];
+	}
+	
+	addMessageToLog(cStr);
 }
 
 //-----------------------------------------------------
