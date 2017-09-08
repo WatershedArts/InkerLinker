@@ -213,7 +213,7 @@ void ofApp::setupGuis()
 	//---------------------------------------------------------------
 	// Debug Gui
 	//---------------------------------------------------------------
-	debuggui = new ILGUI("Debug Gui",(ofGetWidth() - gui->getBox().getLeft())+10,10,300,0,true);
+	debuggui = new ILGUI("Debug Gui",(ofGetWidth() - gui->getBox().getLeft())+10,10,350,0,true);
 	debuggui->addLabelDown("Debug",debuggui->getWidth());
 	debuggui->addLogBoxDown("Log", debuggui->getWidth(),debuggui->getWidth());
 	debuggui->addTextButtonDown("Clear",debuggui->getWidth());
@@ -1491,11 +1491,11 @@ void ofApp::drawBottomBar()
 	ofPushStyle();
 	ofFill();
 	ofSetColor(IL_DEFAULT_COLOR);
-	ofDrawRectRounded(0,ofGetHeight()-(30), ofGetWidth(), 30,1);
+	ofDrawRectRounded(0,ofGetHeight()-40, ofGetWidth(), 30,1);
 	ofSetColor(255);
 	
 	int centerY = ((ofGetHeight()-30)/2) - (titleFont->getStringBoundingBox("Inkerlinker", 0, 0).height/2);
 	
-	titleFont->drawStringCentered("Inkerlinker", 100, ofGetHeight()-15);
+	titleFont->drawStringCentered("Inkerlinker", 60, ofGetHeight()-25);
 	ofPopStyle();
 }
