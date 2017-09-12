@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
+	ofSetLogLevel(OF_LOG_FATAL_ERROR);
 	noOfXPoints = ofGetWidth() / IL_BACKGROUND_SPACING;
 	noOfYPoints = ofGetHeight() / IL_BACKGROUND_SPACING;
 	
@@ -38,6 +39,7 @@ void ofApp::update()
 {
 	touchBoardManager.update();
 	for(auto node : nodes) patchCordManager->updatePatchCords(node->getPorts());
+	
 }
 
 //--------------------------------------------------------------
@@ -45,6 +47,7 @@ void ofApp::draw()
 {
 	drawBackground();
 	touchBoardManager.draw();
+	touchBoardManager.drawDebug();
 	drawNodes();
 	
 	if(newPatchCord != NULL) {
@@ -221,11 +224,27 @@ void ofApp::setupGuis()
 	debuggui->setInvisible();
 	
 	//---------------------------------------------------------------
+	// Touch Board Gui
+	//---------------------------------------------------------------
+	touchboardgui = new ILGUI("Touch Board",(ofGetWidth() - gui->getBox().getLeft())+10,10,350,0,true);
+	touchboardgui->addLabelDown("Touch Board",touchboardgui->getWidth());
+	
+	for (int i = 0; i < 12; i++)
+	{
+		touchboardgui->addSliderDown("TTHS "+ ofToString(i), 0.000, 1.000, 0.1500,170,20);
+		touchboardgui->addSliderRightOf("RTHS " +ofToString(i), "TTHS " + ofToString(i), 0.000, 1.00, 0.08,170,20);
+	}
+	touchboardgui->addTextButtonDown("Save Thresholds",touchboardgui->getWidth());
+	touchboardgui->autoResize();
+	touchboardgui->setInvisible();
+	
+	//---------------------------------------------------------------
 	// IO Node Gui
 	//---------------------------------------------------------------
 	iogui = new ILGUI("IO",10,gui->getBox().getBottom() + 10,46,120,true);
 	iogui->addSvgButtonDown("Load", "load.svg");
 	iogui->addSvgButtonDown("Save", "save.svg");
+	iogui->addSvgToggleDown("Touch", "touch.svg");
 	iogui->addSvgButtonDown("Info", "info.svg");
 	iogui->autoResize();
 	iogui->setVisible();

@@ -11,7 +11,6 @@
 #include "PaletteSaver.h"
 #include "PaletteLoader.h"
 #include "HelpServer.h"
-
 #include "NodeManagerConfig.h"
 
 class ofApp : public ofBaseApp
@@ -377,6 +376,7 @@ class ofApp : public ofBaseApp
 		#pragma mark - IL_NODE_MANAGERS
 	
 		NodeManagerConfig *nodeManagerConfig;
+	
 		QLabManager *qlabManager;
 		OscManager *oscManager;
 		SerialManager *serialManager;
