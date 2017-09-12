@@ -208,6 +208,25 @@ struct QLabData {
 };
 
 
+struct SerialConfig {
+	string devicename;
+	int baudrate;
+};
+
+struct OSCConfig {
+	string host;
+	int port;
+};
+
+struct QLabConfig {
+	string host;
+	int port;
+};
+
+struct CloudBitConfig {
+	string deviceID;
+	string devicetoken;
+};
 
 
 struct BaseData {
