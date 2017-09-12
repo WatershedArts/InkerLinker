@@ -44,6 +44,7 @@ class ofApp : public ofBaseApp
 		ILGUI *nodegui;
 		ILGUI *debuggui;
 		ILGUI *savegui;
+		ILGUI *touchboardgui;
 	
 		ILGUI *arduinoNodeGui;
 		ILGUI *cloudBitNodeGui;
