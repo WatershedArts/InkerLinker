@@ -66,7 +66,27 @@ class TouchBoardManager
 		*/
 		//-----------------------------------------------------
 		void simulateReleaseEvent(int i);
-		
+	
+		//-----------------------------------------------------
+		/** \brief Set Touch Threshold
+			* @param elect : electrode no to change
+			* @param threshold : electrode touch threshold
+			*
+			* This method sets the threshold amount.
+		*/
+		//-----------------------------------------------------
+		void setTouchThresholdForElectrode(int elect,float threshold);
+	
+		//-----------------------------------------------------
+		/** \brief Set Touch Threshold
+			* @param elect : electrode no to change
+			* @param threshold : electrode release threshold
+			*
+			* This method sets the threshold amount.
+		*/
+		//-----------------------------------------------------
+		void setReleaseThresholdForElectrode(int elect,float threshold);
+	
 		//-----------------------------------------------------
 		/** \brief Mouse Pressed
 			* @param e : Mouse Events.

@@ -446,6 +446,7 @@ void ofApp::setupGuis()
 	addListenersToGuis(debuggui);
 	addListenersToGuis(iogui);
 	addListenersToGuis(nodegui);
+	addListenersToGuis(touchboardgui);
 	addListenersToGuis(arduinoNodeGui);
 	addListenersToGuis(cloudBitNodeGui);
 	addListenersToGuis(colorNodeGui);
@@ -468,6 +469,7 @@ void ofApp::drawGuis()
 	debuggui->draw();
 	iogui->draw();
 	nodegui->draw();
+	touchboardgui->draw();
 	arduinoNodeGui->draw();
 	colorNodeGui->draw();
 	cloudBitNodeGui->draw();
@@ -490,6 +492,7 @@ void ofApp::deleteGuis()
 	delete debuggui;
 	delete iogui;
 	delete nodegui;
+	delete touchboardgui;
 	delete arduinoNodeGui;
 	delete colorNodeGui;
 	delete cloudBitNodeGui;
@@ -616,6 +619,14 @@ void ofApp::svgToggleEvents(string &val)
 		hideAllNodeGuis();
 		nodegui->setInvisible();
 		debuggui->setVisible();
+	}
+	else if(val == "Touch:0")
+	{
+		touchboardgui->setInvisible();
+	}
+	else if(val == "Touch:1")
+	{
+		touchboardgui->setVisible();
 	}
 }
 
@@ -1025,6 +1036,19 @@ void ofApp::textInputEvents(TextInputEvent &val)
 void ofApp::sliderEvents(SliderEvent &val)
 {
 	cout << "Slider: " << val.name << " " << val.value << endl;
+	
+	for(int i = 0; i < 12; i++)
+	{
+		if (val.name == "TTHS " + ofToString(i))
+		{
+			cout << "here" << endl;
+			touchBoardManager.setTouchThresholdForElectrode(i, ofToFloat(val.value));
+		}
+		else if (val.name == "RTHS " + ofToString(i))
+		{
+			touchBoardManager.setReleaseThresholdForElectrode(i, ofToFloat(val.value));
+		}
+	}
 }
 
 //--------------------------------------------------------------

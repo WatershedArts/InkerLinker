@@ -130,10 +130,6 @@ void TouchBoardManager::draw()
 		
 		ofDrawRectangle(releasePoints[i].area);
 	}
-//
-//	for (int i = 0; i < touchPoints.size(); i++) if(touchPoints[i].bHover) ofDrawBitmapStringHighlight("Touch Point " + ofToString(i),touchPoints[i].area.getCenter() + ofPoint(20,0));
-//	for (int i = 0; i < releasePoints.size(); i++) if(releasePoints[i].bHover) ofDrawBitmapStringHighlight("Release Point " + ofToString(i),releasePoints[i].area.getCenter()+ ofPoint(20,0));
-//	
 	ofPopStyle();
 }
 
@@ -157,6 +153,18 @@ void TouchBoardManager::simulateReleaseEvent(int i)
 	string a = "-"+ofToString(i);
 	ofNotifyEvent(release, a, this);
 	string mess = "[Touch Board] - Simulated Release Event on Electrode: " + ofToString(i);
+}
+
+//-----------------------------------------------------
+void TouchBoardManager::setTouchThresholdForElectrode(int elect, float threshold)
+{
+	touchBoard.setTouchThreshold(elect, threshold);
+}
+
+//-----------------------------------------------------
+void TouchBoardManager::setReleaseThresholdForElectrode(int elect, float threshold)
+{
+	touchBoard.setReleaseThreshold(elect, threshold);
 }
 
 //-----------------------------------------------------
