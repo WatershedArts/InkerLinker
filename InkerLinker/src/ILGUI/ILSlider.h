@@ -50,7 +50,7 @@ class ILSlider : public ILGUIObject
 			this->offsetX = offsetX;
 			
 			type = IL_SLIDER;
-			value = value;
+			this->value = value;
 			bVertical = bVert;
 			highVal = max;
 			lowVal = min;
@@ -116,7 +116,7 @@ class ILSlider : public ILGUIObject
 
 			if(!bVertical)
 			{
-				ofDrawRectRounded(box.x+(GUI_PADDING_Y*2),box.y+(GUI_PADDING_Y*2),ofMap(value,lowVal,highVal,0,box.width-(GUI_PADDING_Y*4)),box.height-(GUI_PADDING_Y*4),3);
+				ofDrawRectangle(box.x+(GUI_PADDING_Y*2),box.y+(GUI_PADDING_Y*2),ofMap(value,lowVal,highVal,0,box.width-(GUI_PADDING_Y*4)),box.height-(GUI_PADDING_Y*4));
 			}
 			else
 			{
@@ -134,10 +134,7 @@ class ILSlider : public ILGUIObject
 			ofDrawRectRounded(box,3);
 			ofPopStyle();
 			ofSetColor(0);
-			font->drawStringCentered(name,box.getCenter().x,box.getCenter().y);
-
-			ofSetColor(0);
-			font->drawStringCentered(ofToString(value),box.x+box.width+20,box.getCenter().y);
+			font->drawStringCentered(name + " " + ofToString(value),box.getCenter().x,box.getCenter().y);
 			ofPopStyle();
 		}
 
