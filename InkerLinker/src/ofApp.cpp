@@ -1384,14 +1384,13 @@ void ofApp::attachListenersToNodes(vector<BaseNode *> nodes)
 //--------------------------------------------------------------
 void ofApp::setupNodeManagers()
 {
-	qlabManager = new QLabManager("localhost",53000);
-	oscManager = new OscManager("localhost",12345);
-	serialManager = new SerialManager("#",9600);
+	nodeManagerConfig = new NodeManagerConfig();
+	cloudBitManager = new CloudBitManager(nodeManagerConfig->getCloudBitConfig().deviceID,nodeManagerConfig->getCloudBitConfig().devicetoken);
+	qlabManager = new QLabManager(nodeManagerConfig->getQLabConfig().host,nodeManagerConfig->getQLabConfig().port);
+	oscManager = new OscManager(nodeManagerConfig->getOSCConfig().host,nodeManagerConfig->getOSCConfig().port);
+	serialManager = new SerialManager(nodeManagerConfig->getSerialConfig().devicename,nodeManagerConfig->getSerialConfig().baudrate);
 	arduinoManager = new ArduinoManager();
-//	serialManager = new SerialManager("/dev/tty.usbmodem1421",9600);
 	httpManager = new HTTPManager();
-	cloudBitManager = new CloudBitManager("deviceID","deviceAccessToken");
-	
 }
 
 //--------------------------------------------------------------
