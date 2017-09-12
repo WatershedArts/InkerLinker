@@ -965,6 +965,12 @@ void ofApp::iconButtonEvents(string &val)
 void ofApp::textButtonEvents(string &val)
 {
 	cout << "Text Button: " << val << endl;
+	if(val == "Clear")
+	{
+		ILLogBox* logBox = (ILLogBox*)debuggui->getGuiItemByName("Log");
+		logBox->clearLogs();
+	}
+	
 }
 //--------------------------------------------------------------
 void ofApp::textToggleEvents(string &val)
