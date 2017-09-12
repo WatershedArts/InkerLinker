@@ -64,7 +64,7 @@ class ILIconButton : public ILGUIObject
 			ofPushStyle();
 			ofSetColor(255);
 			
-			if(bHovering) ofSetColor(240, 240, 240);
+			if(bHovering) ofSetColor(hoverColour);
 			else ofSetColor(255,255);
 			
 			if(bClicked) ofSetColor(GUI_COLOR);
