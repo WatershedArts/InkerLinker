@@ -379,14 +379,6 @@ class PaletteLoader
 							}
 	
 	
-							vector <string> files;
-							int noOfFiles = loadFile["nodes"][i]["images"].size();
-							// Get the Values
-							for(int c = 0; c < noOfFiles; c++)
-							{
-								files.push_back(loadFile["nodes"][i]["images"][c].asString());
-							}
-	
 							nodes.push_back(new ImageNode(ofRectangle(loadFile["nodes"][i]["position"]["x"].asInt(),
 																		   loadFile["nodes"][i]["position"]["y"].asInt(),
 																		   loadFile["nodes"][i]["position"]["w"].asInt(),
@@ -395,7 +387,7 @@ class PaletteLoader
 														  "Image",
 														  id,
 														  ports,
-														  files));
+														  loadFile["nodes"][i]["images"].asString()));
 						}
 						break;
 						case IL_INSTRUMENT_NODE:

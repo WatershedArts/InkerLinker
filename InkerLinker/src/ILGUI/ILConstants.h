@@ -235,7 +235,7 @@ struct BaseData {
 	vector <CloudBitData> cloudBitData;
 	vector <ofColor> colourData;
 	vector <HTTPData> httpData;
-	vector <string> imageData;
+	string imageData;
 	vector <string> instrumentData;
 	vector <OscData> oscData;
 	vector <QLabData> qlabData;

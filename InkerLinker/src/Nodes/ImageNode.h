@@ -37,9 +37,9 @@ class ImageNode : public BaseNode
 			* it generates the ports and layout of the node
 		*/
 		//-----------------------------------------------------
-		ImageNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<string> filePaths)
+		ImageNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,string filePath)
 		{
-			portNames = {"Next", "Previous"};
+			portNames = {"Show", "Hide","Fade In", "Fade Out"};
 			type = IL_IMAGE_NODE;
 			addMouseAndCloseListeners();
 			this->id = id;
@@ -47,23 +47,19 @@ class ImageNode : public BaseNode
 			this->name = name;
 			this->noOfPorts = portNames.size();
 			this->box = box;
-			this->filePaths = filePaths;
+			this->filePath = filePath;
 			resizeNode = ofRectangle(box.getBottomRight()+ofPoint(-25,-25),25,25);
 
 			header = ofRectangle(box.x, box.y,box.width, 23);
 
 			generatePorts(noOfPorts);
 
-			currentPosition = 0;
+			currentVisibilty = 0;
 			maxImageWidth = 0;
 			maxImageHeight = 0;
 
-			images.resize(filePaths.size());
-			bAllImagesLoaded = false;
-			for (int i = 0; i < filePaths.size(); i++)
-			{
-				imageLoader.loadFromDisk(images[i],filePaths[i]);
-			}
+			image.load(filePath);
+			
 			carouselContainer.allocate(600,600);
 			carouselContainer.begin();
 			ofClear(0);
@@ -84,7 +80,7 @@ class ImageNode : public BaseNode
 			* the node.
 		*/
 		//-----------------------------------------------------
-		ImageNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,vector<string> filePaths)
+		ImageNode(ofRectangle box,ofxCenteredTrueTypeFont * font, string name, int *id,vector<Port> ports,string filePath)
 		{
 			type = IL_IMAGE_NODE;
 			addMouseAndCloseListeners();
@@ -93,22 +89,17 @@ class ImageNode : public BaseNode
 			this->name = name;
 			this->ports = ports;
 			this->box = box;
-			this->filePaths = filePaths;
+			this->filePath = filePath;
 			resizeNode = ofRectangle(box.getBottomRight()+ofPoint(-25,-25),25,25);
 
 			header = ofRectangle(box.x, box.y,box.width, 23);
 
-			currentPosition = 0;
+			currentVisibilty = 0;
 			maxImageWidth = 0;
 			maxImageHeight = 0;
 
-			images.resize(filePaths.size());
-			bAllImagesLoaded = false;
-			for (int i = 0; i < filePaths.size(); i++)
-			{
-				imageLoader.loadFromDisk(images[i],filePaths[i]);
-			}
-			carouselContainer.allocate(500,500);
+			
+			carouselContainer.allocate(600,600);
 			carouselContainer.begin();
 			ofClear(0);
 			carouselContainer.end();
@@ -126,27 +117,17 @@ class ImageNode : public BaseNode
 
 			carouselContainer.begin();
 			ofClear(0,255);
-			ofSetColor(255);
+			
 
 			if(tweenLinear.isRunning())
 			{
-				currentPosition = tweenLinear.update();
+				currentVisibilty = tweenLinear.update();
 			}
-
-			for (int i = 0; i < images.size(); i++)
-			{
-				ofPoint c(carouselContainer.getWidth()/2,carouselContainer.getHeight()/2);
-				ofPoint mark(images[i].getWidth()/2,images[i].getHeight()/2);
-
-				ofPoint newOffsetPos = c - mark;
-				ofPushMatrix();
-
-			//			currentPosition = -1000 + 1000 * sin(ofGetElapsedTimef());
-
-			ofTranslate(currentPosition,0);
-			images[i].draw(newOffsetPos.x + (i*600),newOffsetPos.y,images[i].getWidth(),images[i].getHeight());
+	
+			ofSetColor(255,currentVisibilty);
+			image.draw(0,0,image.getWidth(),image.getHeight());
 			ofPopMatrix();
-			}
+			
 			carouselContainer.end();
 
 			ofPushStyle();
@@ -166,39 +147,42 @@ class ImageNode : public BaseNode
 		//-----------------------------------------------------
 		void triggerPort(int i)
 		{
-
+			if(i == 0)
+			{
+				currentVisibilty = 255;
+			}
+			else if(i == 1)
+			{
+				currentVisibilty = 0;
+			}
+			else if(i == 2)
+			{
+				tweenLinear.setParameters(0,easingLinear,ofxTween::easeInOut,currentVisibilty,255,1000,0);
+			}
+			else if(i == 3)
+			{
+				tweenLinear.setParameters(0,easingLinear,ofxTween::easeInOut,currentVisibilty,0,1000,0);
+			}
 		}
 
 		//-----------------------------------------------------
-		/** \brief Kill the Thread
+		/** \brief Get the File Path for Saving
+			* @return filePath : A filePath.
 			*
-			* This method Stops the loader thread.
-		*/
-		//-----------------------------------------------------
-		void killImageThread()
-		{
-			imageLoader.stopThread();
-		}
-
-		//-----------------------------------------------------
-		/** \brief Get the File Paths for Saving
-			* @return filePaths : A vector of filePaths.
-			*
-			* This method returns the stored filePaths for
+			* This method returns the stored filePath for
 			* saving.
 		*/
 		//-----------------------------------------------------
-		vector <string> getFilePaths()
+		string getFilePath()
 		{
-			return filePaths;
+			return filePath;
 		}
 
 	private:
-		int currentPosition;
-		vector <string> filePaths;
+		int currentVisibilty;
+		string filePath;
 
-		ofxThreadedImageLoader imageLoader;
-		vector<ofImage> images;
+		ofImage image;
 
 		ofFbo carouselContainer;
 		ofxTween tweenLinear;

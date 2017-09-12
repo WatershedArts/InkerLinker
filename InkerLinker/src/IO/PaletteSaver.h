@@ -183,11 +183,7 @@ class PaletteSaver
 							file["nodes"][i]["ports"][e]["electrodeid"] = a->getPorts()[e].getElectrodeId();
 							file["nodes"][i]["ports"][e]["name"] = a->getPorts()[e].getName();
 						}
-
-						for(int f = 0; f < a->getFilePaths().size(); f++)
-						{
-							file["nodes"][i]["images"][f] = a->getFilePaths()[f];
-						}
+						file["nodes"][i]["file"] = a->getFilePath();
 					}
 					break;
 					case IL_INSTRUMENT_NODE:

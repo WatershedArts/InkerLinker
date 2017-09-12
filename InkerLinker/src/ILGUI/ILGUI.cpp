@@ -549,7 +549,7 @@ void ILGUI::addNewHTTPData(HTTPData newData)
 //-----------------------------------------------------
 void ILGUI::addNewImageData(string file)
 {
-	data.imageData.push_back(file);
+	data.imageData = file;
 	addMessageToLog(file);
 }
 
