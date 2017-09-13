@@ -136,7 +136,6 @@ struct RadioEvent
 	string value;
 };
 
-
 //-----------------------------------------------------
 /** \brief Touch Board Constants */
 //-----------------------------------------------------
@@ -154,6 +153,12 @@ struct Electrode
 	bool bAction;
 	TB_POINT_TYPE type;
 	ofPoint offset;
+};
+
+struct ElectrodeThresholds
+{
+	vector <float> touchThresholds;
+	vector <float> releaseThresholds;
 };
 
 struct PatchCord

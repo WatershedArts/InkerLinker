@@ -328,6 +328,7 @@
 		635E78581F5F005700232121 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		637025507E2C0C681E27016B /* FileSystemRoute.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FileSystemRoute.cpp; path = ../../../addons/ofxHTTP/libs/ofxHTTP/src/FileSystemRoute.cpp; sourceTree = SOURCE_ROOT; };
 		6374EF4D1F62C2EE003C35F8 /* NodeManagerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeManagerConfig.h; sourceTree = "<group>"; };
+		639FFCE71F6837D4008566C8 /* TouchBoardThresholdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBoardThresholdManager.h; sourceTree = "<group>"; };
 		63A47AC60FFAFC3BF093EC0F /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OscOutboundPacketStream.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.cpp; sourceTree = SOURCE_ROOT; };
 		63D7A5F71F581D970004ED90 /* CustomTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CustomTimer.cpp; sourceTree = "<group>"; };
 		63D7A5F81F581D970004ED90 /* CustomTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTimer.h; sourceTree = "<group>"; };
@@ -977,6 +978,7 @@
 			children = (
 				63D7A5FB1F581DA40004ED90 /* TouchBoardManager.cpp */,
 				63D7A5FC1F581DA40004ED90 /* TouchBoardManager.h */,
+				639FFCE71F6837D4008566C8 /* TouchBoardThresholdManager.h */,
 			);
 			path = TouchBoard;
 			sourceTree = "<group>";

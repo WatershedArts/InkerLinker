@@ -989,6 +989,10 @@ void ofApp::textButtonEvents(string &val)
 		ILLogBox* logBox = (ILLogBox*)debuggui->getGuiItemByName("Log");
 		logBox->clearLogs();
 	}
+	else if(val == "Save Thresholds")
+	{
+		
+	}
 	
 }
 //--------------------------------------------------------------
@@ -1222,6 +1226,14 @@ void ofApp::closeAllGuis()
 void ofApp::setupTouchBoard()
 {
 	touchBoardManager.setup();
+	ElectrodeThresholds thres = thresholdManager.loadThresholds();
+	
+	for (int i = 0; i < thres.touchThresholds.size(); i++)
+	{
+		touchBoardManager.setTouchThresholdForElectrode(i,thres.touchThresholds[i]);
+		touchBoardManager.setReleaseThresholdForElectrode(i,thres.releaseThresholds[i]);
+	}
+	
 	ofAddListener(touchBoardManager.clickElectrode,this,&ofApp::startNewPatchCord);
 	ofAddListener(touchBoardManager.touch,this,&ofApp::newTouchEvent);
 	ofAddListener(touchBoardManager.release,this,&ofApp::newReleaseEvent);
@@ -1539,7 +1551,7 @@ void ofApp::drawBottomBar()
 	ofPushStyle();
 	ofFill();
 	ofSetColor(IL_DEFAULT_COLOR);
-	ofDrawRectRounded(0,ofGetHeight()-40, ofGetWidth(), 30,1);
+	ofDrawRectangle(0,ofGetHeight()-30, ofGetWidth(), 30);
 	ofSetColor(255);
 	
 	int centerY = ((ofGetHeight()-30)/2) - (titleFont->getStringBoundingBox("Inkerlinker", 0, 0).height/2);

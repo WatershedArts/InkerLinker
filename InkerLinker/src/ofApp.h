@@ -12,6 +12,7 @@
 #include "PaletteLoader.h"
 #include "HelpServer.h"
 #include "NodeManagerConfig.h"
+#include "TouchBoardThresholdManager.h"
 
 class ofApp : public ofBaseApp
 {
@@ -225,7 +226,7 @@ class ofApp : public ofBaseApp
 		#pragma mark - IL_TOUCH_BOARD
 		//-----------------------------------------------------
 		TouchBoardManager touchBoardManager;
-	
+		TouchBoardThresholdManager thresholdManager;
 		//-----------------------------------------------------
 		/** \brief Setup Touchboard
 			*
