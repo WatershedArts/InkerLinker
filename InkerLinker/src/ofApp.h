@@ -75,6 +75,8 @@ class ofApp : public ofBaseApp
 		string tmpSoundFile;
 		string tmpVideoFile;
 	
+		bool bShowTouchDebug;
+	
 		//-----------------------------------------------------
 		/** \brief Setup GUI's 
 			* 
@@ -227,6 +229,8 @@ class ofApp : public ofBaseApp
 		//-----------------------------------------------------
 		TouchBoardManager touchBoardManager;
 		TouchBoardThresholdManager thresholdManager;
+		ElectrodeThresholds electrodeThresholds;
+	
 		//-----------------------------------------------------
 		/** \brief Setup Touchboard
 			*

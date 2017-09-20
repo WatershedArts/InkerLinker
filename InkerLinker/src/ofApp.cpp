@@ -18,13 +18,14 @@ void ofApp::setup()
 	ofEnableAntiAliasing();
 	ofSetCircleResolution(20);
 	
-	
 	nodeFont = new ofxCenteredTrueTypeFont();
 	nodeFont->load("SF-Pro-Text-Medium.otf", 10,true,true,true);
 	titleFont = new ofxCenteredTrueTypeFont();
 	titleFont->load("SF-Pro-Text-Regular.otf", 15,true,true,true);
 	
 	helpServer = new HelpServer();
+	
+	bShowTouchDebug = false;
 }
 
 //--------------------------------------------------------------
@@ -47,7 +48,8 @@ void ofApp::draw()
 {
 	drawBackground();
 	touchBoardManager.draw();
-	touchBoardManager.drawDebug();
+	
+	if(bShowTouchDebug) touchBoardManager.drawDebug(touchboardgui->getX()-290,touchboardgui->getY());
 	drawNodes();
 	
 	if(newPatchCord != NULL) {
@@ -642,10 +644,12 @@ void ofApp::svgToggleEvents(string &val)
 	else if(val == "Touch:0")
 	{
 		touchboardgui->setInvisible();
+		bShowTouchDebug = false;
 	}
 	else if(val == "Touch:1")
 	{
 		touchboardgui->setVisible();
+		bShowTouchDebug = true;
 	}
 }
 
@@ -1226,12 +1230,12 @@ void ofApp::closeAllGuis()
 void ofApp::setupTouchBoard()
 {
 	touchBoardManager.setup();
-	ElectrodeThresholds thres = thresholdManager.loadThresholds();
+	electrodeThresholds = thresholdManager.loadThresholds();
 	
-	for (int i = 0; i < thres.touchThresholds.size(); i++)
+	for (int i = 0; i < electrodeThresholds.touchThresholds.size(); i++)
 	{
-		touchBoardManager.setTouchThresholdForElectrode(i,thres.touchThresholds[i]);
-		touchBoardManager.setReleaseThresholdForElectrode(i,thres.releaseThresholds[i]);
+		touchBoardManager.setTouchThresholdForElectrode(i,electrodeThresholds.touchThresholds[i]);
+		touchBoardManager.setReleaseThresholdForElectrode(i,electrodeThresholds.releaseThresholds[i]);
 	}
 	
 	ofAddListener(touchBoardManager.clickElectrode,this,&ofApp::startNewPatchCord);
@@ -1354,20 +1358,24 @@ void ofApp::removeNode(int &nodeId)
 void ofApp::loadNodes()
 {
 	string path = ofSystemLoadDialog().filePath;
+	
 	paletteLoader.load(path);
 	patchCordManager->reset();
 	nodes.clear();
+	
 	patchCordManager->addNewPatchCord(paletteLoader.getPatchCords());
 	nodes = paletteLoader.getNodes();
 	
-	attachListenersToNodes(nodes);
+	electrodeThresholds.touchThresholds.clear();
+	electrodeThresholds.releaseThresholds.clear();
 	
+	attachListenersToNodes(nodes);
 }
 
 //--------------------------------------------------------------
 void ofApp::saveNodes()
 {
-	paletteSaver.save(patchCordManager->getAllPatchCoords(), nodes);
+	paletteSaver.save(patchCordManager->getAllPatchCoords(), nodes,electrodeThresholds);
 }
 
 //--------------------------------------------------------------
@@ -1556,6 +1564,6 @@ void ofApp::drawBottomBar()
 	
 	int centerY = ((ofGetHeight()-30)/2) - (titleFont->getStringBoundingBox("Inkerlinker", 0, 0).height/2);
 	
-	titleFont->drawStringCentered("Inkerlinker", 60, ofGetHeight()-25);
+	titleFont->drawStringCentered("Inkerlinker", 60, ofGetHeight()-15);
 	ofPopStyle();
 }
