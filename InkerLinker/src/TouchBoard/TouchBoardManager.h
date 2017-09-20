@@ -45,9 +45,15 @@ class TouchBoardManager
 		void draw();
 		
 		//-----------------------------------------------------
-		/** \brief Draw Debug */
+		/** \brief Draw Debug 
+			* @param x : x cord
+			* @param y : y cord
+			*
+			* This method draws the debug data at a specific
+			* location.
+		*/
 		//-----------------------------------------------------
-		void drawDebug();
+		void drawDebug(int x,int y);
 		
 		//-----------------------------------------------------
 		/** \brief Simulate Touch Event

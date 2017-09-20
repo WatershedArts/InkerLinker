@@ -134,9 +134,16 @@ void TouchBoardManager::draw()
 }
 
 //-----------------------------------------------------
-void TouchBoardManager::drawDebug()
+void TouchBoardManager::drawDebug(int x,int y)
 {
-	touchBoard.printData(0, 25);
+	ofPushStyle();
+	ofSetColor(255, 255, 255);
+	ofPushMatrix();
+	ofTranslate(x, y);
+	ofDrawRectRounded(-2,0,290,250, 2);
+	touchBoard.printData(0, 0);
+	ofPopMatrix();
+	ofPopStyle();
 }
 
 //-----------------------------------------------------
