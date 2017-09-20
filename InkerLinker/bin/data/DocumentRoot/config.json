@@ -1,0 +1,18 @@
+{
+  "serialconfig": {
+    "devicename": "this",
+    "baud": 9600
+  },
+  "oscconfig": {
+    "host": "this",
+    "port": 9600
+  },
+  "qlabconfig": {
+    "host": "this",
+    "port": 9600
+  },
+  "cloudbitconfig": {
+    "deviceid": "this",
+    "deviceaccesstoken": ""
+  }
+}

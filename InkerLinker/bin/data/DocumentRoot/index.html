@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta charset=utf-8 />
+		<title>Touch Board Suite</title>
+		<link rel='stylesheet' href="js/libs/bootstrap/css/bootstrap.min.css"/>
+		<script type="text/javascript" src="js/libs/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="js/libs/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap/js/bootstrap.js"></script>
+		<link rel="stylesheet" href="js/libs/font-awesome/css/font-awesome.css"/>
+		<link rel='stylesheet' href="./css/style.css"/>
+	<style>
+		img {
+			width: 75%;
+		}
+
+		.siema {
+			margin: 1rem 0;
+		}
+	</style>
+</head>
+<body id="body">
+	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">InkerLinker</a>
+	    </div>
+
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul id="pages" class="nav navbar-nav">
+	          <li><a href='index.php'>About</a></li>
+	          <li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nodes<span class="caret"></span></a>
+	            <ul id="nodescontent" class="dropdown-menu"></ul>
+	          </li>
+	          <li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help Topics<span class="caret"></span></a>
+	            <ul id="helpcontent" class="dropdown-menu"></ul>
+	          </li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+	<div style="margin-left: 10px; margin-right:10px; padding-top:50px;" class="">
+
+
+	<div id="About" class="container">
+		<h2>About</h2>
+		<p>InkerLinker was written for a workshop in the Pervasive Media Studio.</p>
+		<p>InkerLinker written by David Haylock.</p>
+		<p>User Interface designed by Tom Metcalfe.</p>
+	</div>
+
+	<div id="Nodes" class="container">
+			<h2>Node Managers</h2>
+			<p>Inkerlinker has a numerous managers that handle incoming events from the nodes. This section outlines some of the managers.</p>
+			<table class="table">
+					<thead>
+						<tr>
+							<th>Manager Name</th>
+							<th>Function</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td> 
+								Arduino Manager
+							</td>
+							<td> 
+								Handles incoming actions from the arduino node. It also handles the change of pin modes, so when the user changes the output mode of the pin, the manager tells the arduino to do so.
+							</td>
+						</tr>
+						<tr>
+								<td> 
+									OSC Manager
+								</td>
+								<td> 
+									Handles incoming actions from the osc nodes. By Default the OSC ports are set as localhost and port 12345.
+								</td>
+						</tr>
+						<tr>
+								<td> 
+									QLab Manager
+								</td>
+								<td> 
+									Handles incoming actions from the qlab nodes. By default the ports are set to localhost port 53000.
+								</td>
+						</tr>
+					</tbody>
+				</table>
+	</div>
+
+	<div id="Nodes" class="container">
+	  <h2>Nodes</h2>
+	  <p>Here is a list of all the current action nodes</p>
+	  <table class="table">
+	    <thead>
+	      <tr>
+	        <th>Node Name</th>
+	        <th>Node Function</th>
+					<th>Creation</th>
+	        <th>Node Actions</th>
+	      </tr>
+	    </thead>
+	    <tbody id="tbody">
+	    </tbody>
+	  </table>
+	</div>
+
+	<div id="Help" class="container">
+		<h2>Help</h2>
+	</div>
+
+	</div>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

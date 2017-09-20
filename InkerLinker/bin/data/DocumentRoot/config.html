@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta charset=utf-8 />
+		<title>InkerLinker Config Screen</title>
+		<link rel='stylesheet' href="js/libs/bootstrap/css/bootstrap.min.css"/>
+		<script type="text/javascript" src="js/libs/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="js/libs/jquery-1.12.3.min.js"></script>
+        <script type="text/javascript" src="js/libs/bootstrap/js/bootstrap.js"></script>
+		<link rel="stylesheet" href="js/libs/font-awesome/css/font-awesome.css"/>
+		<link rel='stylesheet' href="./css/style.css"/>
+		<style>
+			body {
+				margin: 5px;
+			}
+		</style>
+
+		
+</head>
+<body>
+	<h1>InkerLinker Config</h1>
+	<!-- Serial Data -->
+	<div class="col-md-4">
+		<form method="POST" action="login.php" class="form-signin">
+				<h3>Serial</h3>
+				<label for="devicename">Device Name</label>	
+				<input required type="text" class="form-control" name="devicename" id="devicename">
+				<label for="baud">Select Baud:</label>
+				<select class="form-control" id="baud" name="baudrate">
+					<option value="4800">4800</option>
+					<option value="9600">9600</option>
+					<option value="19200">19200</option>
+					<option value="38400">38400</option>
+					<option value="74800">74800</option>
+				</select>
+				<br>
+				<h3>OSC</h3>
+				<label for="oschost">OSC Host</label>	
+				<input required type="text" class="form-control" name="oschost" placeholder="OSC Host" id="oschost">
+				<label for="oscport">OSC Port:</label>
+				<input required type="text" class="form-control" name="oscport" placeholder="OSC Port" id="oscport">
+				<br>
+				<h3>QLab</h3>
+				<label for="qlabhost">OSC Host</label>	
+				<input required type="text" class="form-control" name="qlabhost" placeholder="QLab Host" id="qlabhost">
+				<label for="qlabport">QLab Port:</label>
+				<input required type="text" class="form-control" name="qlabport" placeholder="53000" id="qlabport">
+				<br>
+				<h3>Cloud Bit</h3>
+				<label for="cloudbitdeviceid">OSC Host</label>	
+				<input required type="text" class="form-control" name="cloudbitdeviceid" placeholder="Device Id" id="cloudbitdeviceid">
+				<label for="cloudbitdeviceaccesstoken">QLab Port:</label>
+				<input required type="text" class="form-control" name="cloudbitaccesstoken" placeholder="misc" id="cloudbitaccesstoken">
+				<br>
+				<input type="submit" class="btn btn-primary" name="set" value="Save Config"></input>
+			</form>
+		</div>
+		<script type="text/javascript">
+			document.getElementById("devicename").value = "/dev/tty.usbserial1421";
+			document.getElementById("baud").value = "4800";
+			document.getElementById("oschost").value = "localhost";
+			document.getElementById("oscport").value = "12345";
+		</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+[
+  {
+    "pagename": "Nodes",
+    "intro": "",
+    "content": [
+      {
+        "nodename": "Arduino",
+        "description": "The Arduino node, triggers actions on the arduino.",
+        "actions": [
+          {
+            "portno": "Multiple",
+            "action": "User Defined Actions"
+          }
+        ]
+      },
+      {
+        "nodename": "Video",
+        "description": "When triggered the node will flash a color associated with the port.",
+        "actions": [
+          {
+            "portno": 0,
+            "action": "Start"
+          },
+          {
+            "portno": 1,
+            "action": "Stop"
+          },
+          {
+            "portno": 2,
+            "action": "Reset"
+          }
+        ]
+      },
+      {
+        "nodename": "Sound",
+        "description": "When triggered the node will flash a color associated with the port.",
+        "actions": [
+          {
+            "portno": 0,
+            "action": ""
+          },
+          {
+            "portno": 1,
+            "action": ""
+          },
+          {
+            "portno": 2,
+            "action": ""
+          }
+        ]
+      },
+      {
+        "nodename": "Drum",
+        "description": "When triggered the node will flash a color associated with the port.",
+        "actions": [
+          {
+            "portno": 0,
+            "action": ""
+          },
+          {
+            "portno": 1,
+            "action": ""
+          },
+          {
+            "portno": 2,
+            "action": ""
+          }
+        ]
+      },
+      {
+        "nodename": "OSC",
+        "description": "When triggered the node will flash a color associated with the port.",
+        "actions": [
+          {
+            "portno": 0,
+            "action": ""
+          },
+          {
+            "portno": 1,
+            "action": ""
+          },
+          {
+            "portno": 2,
+            "action": ""
+          }
+        ]
+      },
+      {
+        "nodename": "QLab",
+        "description": "When triggered the node will flash a color associated with the port.",
+        "actions": [
+          {
+            "portno": 0,
+            "action": ""
+          },
+          {
+            "portno": 1,
+            "action": ""
+          },
+          {
+            "portno": 2,
+            "action": ""
+          }
+        ]
+      },
+      {
+        "nodename": "Arduino",
+        "description": "When triggered the node will flash a color associated with the port.",
+        "actions": [
+          {
+            "portno": 0,
+            "action": ""
+          },
+          {
+            "portno": 1,
+            "action": ""
+          },
+          {
+            "portno": 2,
+            "action": ""
+          }
+        ]
+      },
+      {
+        "nodename": "HTTP",
+        "description": "When triggered the node will flash a color associated with the port.",
+        "actions": [
+          {
+            "portno": 0,
+            "action": ""
+          },
+          {
+            "portno": 1,
+            "action": ""
+          },
+          {
+            "portno": 2,
+            "action": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "pagename": "Help",
+    "content": [
+      {
+        "topic": "Adding",
+        "gif": "./gifs/Adding.gif",
+        "text": " ij;ofiajiaecina;odfna;k dmf askdfa;lsdkjfpoiwinv as d"
+      },
+      {
+        "topic": "Deleting",
+        "gif": "./gifs/Chaining.gif",
+        "text": " ij;ofiajiaecina;sdffpoiwinv as d"
+        },
+        {
+          "topic": "Saving",
+          "gif": "./gifs/Adding.gif",
+          "text": " ij;ofiajiaecina;odfna;k dmf askdfa;lsdkjfpoiwinv as d"
+        },
+        {
+          "topic": "Loading",
+          "gif": "./gifs/Adding.gif",
+          "text": " ij;ofiajiaecina;odfna;k dmf askdfa;lsdkjfpoiwinv as d"
+        },
+        {
+          "topic": "Chaining",
+          "gif": "./gifs/Adding.gif",
+          "text": "Chaining enables you to trigger multiple action from one electrode.\n"
+        }
+    ]
+}
+]
