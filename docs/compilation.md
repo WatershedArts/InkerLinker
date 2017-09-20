@@ -1,0 +1,21 @@
+##Required Addons
+
+* ofxAudioDecoder
+* ofxAutoReloadedShader
+* ofxAvCodec
+* ofxDmx
+* ofxFontSmash
+* ofxHTTP
+* ofxHttpUtils
+* ofxIO
+* ofxJSON
+* ofxMediaType
+* ofxNetwork
+* ofxNetworkUtils
+* ofxOsc
+* ofxSSLManager
+* ofxTaskQueue
+* ofxThreadedImageLoader
+* ofxTouchBoard
+* ofxTween
+* ofxXmlSettings
