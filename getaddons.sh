@@ -19,6 +19,7 @@ bakercp/ofxIO \
 bakercp/ofxMediaType \
 bakercp/ofxNetworkUtils \
 bakercp/ofxSSLManager \
+NickHardeman/ofxSvgLoader \
 bakercp/ofxTaskQueue \
 arturoc/ofxTween \
 DHaylock/ofxTouchBoard \
