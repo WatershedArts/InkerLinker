@@ -18,6 +18,7 @@ class PaletteLoader
 		int maxLoadedId = 0;
 		vector <BaseNode*> nodes;
 		vector <PatchCord> cords;
+		ElectrodeThresholds electrodesThresholds;
 	
 	public:
 	
@@ -55,6 +56,19 @@ class PaletteLoader
 		vector <BaseNode*> getNodes()
 		{
 			return nodes;
+		}
+	
+		//-----------------------------------------------------
+		/** \brief Get Electrode Thresholds
+			* @return electrodeThresholds : thresholds.
+			*
+			* This method returns the thresholds for the touch
+			* board.
+		*/
+		//-----------------------------------------------------
+		ElectrodeThresholds getThresholds()
+		{
+			return electrodesThresholds;
 		}
 	
 		//-----------------------------------------------------
