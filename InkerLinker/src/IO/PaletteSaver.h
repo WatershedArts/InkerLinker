@@ -16,14 +16,15 @@ class PaletteSaver
 {
 	public:
 		//-----------------------------------------------------
-			/** \brief Load the Palette File
-				* @param cords : vector of cords.
-				* @param nodes : vector of nodes.
-				*
-				* This method Save the palette file.
-			*/
-			//-----------------------------------------------------
-		void save(vector <PatchCord> cords,vector <BaseNode*> nodes)
+		/** \brief Load the Palette File
+			* @param cords : vector of cords.
+			* @param nodes : vector of nodes.
+			* @param electrodeThresholds : thresholds
+			*
+			* This method Save the palette file.
+		*/
+		//-----------------------------------------------------
+		void save(vector <PatchCord> cords,vector <BaseNode*> nodes, ElectrodeThresholds electrodeThresholds)
 		{
 			ofxJSONElement file;
 
@@ -51,8 +52,14 @@ class PaletteSaver
 				file["cords"][i]["secondcurvepoint"]["x"] = cords[i].secondCurvePoint.x;
 				file["cords"][i]["secondcurvepoint"]["y"] = cords[i].secondCurvePoint.y;
 			}
-
-
+			
+			// Threshold Section
+			for (int i = 0; i < electrodeThresholds.touchThresholds.size(); i++)
+			{
+				file["electrodes"][i]["touch"] = electrodeThresholds.touchThresholds[i];
+				file["electrodes"][i]["release"] = electrodeThresholds.releaseThresholds[i];
+			}
+			
 			// NODES Section
 			for(int i = 0; i < nodes.size(); i++)
 			{
