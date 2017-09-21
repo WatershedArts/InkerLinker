@@ -3,6 +3,8 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
+	ofSetDataPathRoot("../Resources/data/");
+	
 	ofSetLogLevel(OF_LOG_FATAL_ERROR);
 	noOfXPoints = ofGetWidth() / IL_BACKGROUND_SPACING;
 	noOfYPoints = ofGetHeight() / IL_BACKGROUND_SPACING;
