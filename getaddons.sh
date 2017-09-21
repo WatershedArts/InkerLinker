@@ -7,8 +7,7 @@
 #--------------------------------------------------------------
 
 repobase="https://github.com";
-repos="kylemcdonald/ofxAudioDecoder \
-andreasmuller/ofxAutoReloadedShader \
+repos="andreasmuller/ofxAutoReloadedShader \
 kritzikratzi/ofxAvCodec \
 kylemcdonald/ofxDmx \
 armadillu/ofxFontStash \
