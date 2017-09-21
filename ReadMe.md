@@ -1,8 +1,6 @@
 ## InkerLinker
 
-### Documentation Not Complete
-
-![Watershed Icon](./docs/images/wshed.png)
+![Watershed Icon](./docs/images/InkerLinkerIcon.jpg)
 
 InkerLinker is a custom node based editor that enables users to rapidly prototype interactive scenarios using the Bare Conductive Touch Board, Conductive Ink, Copper Tape and openFrameworks. 
 
@@ -18,9 +16,11 @@ Written in C++ using openFrameworks 0.9.8.
 
 **Currently Mac Only**
 
+**Documentation Not Yet Complete**
+
 ## Quick Start
 
-Download the Application from the **Wiki**.
+[Download](https://github.com/WatershedArts/InkerLinker/releases) the application 
 
 You need to upload the **DataStream** Sketch to the Touchboard to use InkerLinker.
 
