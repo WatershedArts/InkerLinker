@@ -99,6 +99,13 @@ class ArduinoNode : public BaseNode
 			ofSetColor(255);
 			ofFill();
 			
+			ofPushStyle();
+			ofSetColor(0);
+			ofFill();
+			font->drawStringCentered("Current Pin: "+ofToString(arduinoData[currentCommand].pin), box.getCenter().x, box.getCenter().y-20);
+			font->drawStringCentered("Current Mode: "+ofToString(arduinoData[currentCommand].mode), box.getCenter().x, box.getCenter().y);
+			font->drawStringCentered("Current Value: "+ofToString(arduinoData[currentCommand].value), box.getCenter().x, box.getCenter().y+20);
+			ofPopStyle();
 			ofPopStyle();
 			BaseNode::drawTooltips();
 		}
@@ -113,6 +120,7 @@ class ArduinoNode : public BaseNode
 		void triggerPort(int i)
 		{
 			if(!arduinoData.empty())
+				currentCommand = i;
 				ofNotifyEvent(arduinoEvent, arduinoData[i], this);
 		}
 		
@@ -132,6 +140,7 @@ class ArduinoNode : public BaseNode
 		ofEvent<ArduinoData> arduinoEvent;
 	private:
 		vector<ArduinoData> arduinoData;
+		int currentCommand = 0;
 };
 
 

@@ -120,6 +120,7 @@ class CloudBitNode : public BaseNode
 		void triggerPort(int i)
 		{
 			if(!cloudBitData.empty())
+				currentCommand = i;
 				ofNotifyEvent(cloudDataEvent, cloudBitData[i], this);
 		}
 		

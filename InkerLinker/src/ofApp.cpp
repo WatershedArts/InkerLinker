@@ -1498,22 +1498,24 @@ void ofApp::cloudBitEventListener(CloudBitData &cloudbitdata)
 void ofApp::arduinoEventListener(ArduinoData &arduinodata)
 {
 	cout << arduinodata.mode << " " << arduinodata.pin << " " << arduinodata.value << endl;
-	if(arduinodata.mode == "DIGITAL") {
-		if (ofIsStringInString(arduinodata.value, "H")) {
-			cout << "Hot hot hot" << endl;
+	if(arduinodata.mode == "DIGITAL")
+	{
+		if (ofIsStringInString(arduinodata.value, "H"))
+		{
 			arduinoManager->setDigital(ofToInt(arduinodata.pin),true);
 		}
-		else if (ofIsStringInString(arduinodata.value, "L")) {
-			cout << "Cold Cold Cold" << endl;
+		else if (ofIsStringInString(arduinodata.value, "L"))
+		{
 			arduinoManager->setDigital(ofToInt(arduinodata.pin),false);
 		}
-		
 	}
-	else if(arduinodata.mode == "PWM") {
+	else if(arduinodata.mode == "PWM")
+	{
 		int value = ofToInt(arduinodata.value);
 		arduinoManager->setPWM(ofToInt(arduinodata.pin),value);
 	}
-	else if(arduinodata.mode == "SERVO") {
+	else if(arduinodata.mode == "SERVO")
+	{
 		int value = ofToInt(arduinodata.value);
 		arduinoManager->setServo(ofToInt(arduinodata.pin),value);
 	}
