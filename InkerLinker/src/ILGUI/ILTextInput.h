@@ -94,7 +94,7 @@ class ILTextInput : public ILGUIObject
 		//-----------------------------------------------------
 		void clear()
 		{
-			typeStr.clear();
+			typeStr = "";
 			bFirst = false;
 		}
 		
@@ -156,34 +156,73 @@ class ILTextInput : public ILGUIObject
 			{
 				if(bHasFocus)
 				{
-					if(e.key == OF_KEY_DEL || e.key == OF_KEY_BACKSPACE)
+					switch(e.key)
 					{
-						typeStr = typeStr.substr(0, typeStr.length()-1);
-					}
-					else if(e.key == OF_KEY_TAB)
-					{
-						
-					}
-					else if(e.key == OF_KEY_RETURN)
-					{
-						TextInputEvent te;
-						te.name = name;
-						te.text = typeStr;
-
-						ofNotifyEvent(guiEvent, te, this);
-						bHasFocus = false;
-						bFirst = true;
-					}
-					else
-					{
-						if( bFirst )
+						case OF_KEY_DEL: typeStr = typeStr.substr(0, typeStr.length()-1); break;
+						case OF_KEY_BACKSPACE: typeStr = typeStr.substr(0, typeStr.length()-1); break;
+						case OF_KEY_TAB: break;
+						case OF_KEY_LEFT_SHIFT: break;
+						case OF_KEY_RIGHT_SHIFT: break;
+						case OF_KEY_RETURN:
 						{
-							typeStr.clear();
-							bFirst = false;
+							TextInputEvent te;
+							te.name = name;
+							te.text = typeStr;
+	
+							ofNotifyEvent(guiEvent, te, this);
+							bHasFocus = false;
+							bFirst = true;
+						
 						}
-						typeStr += e.key;
-//						ofAppendUTF8(typeStr,e.key);
+						break;
+						default:
+						{
+							if( bFirst )
+							{
+								typeStr = e.key;
+								bFirst = false;
+							}
+							else
+							{
+								typeStr += e.key;
+							}
+						}
+						break;
 					}
+					
+					
+					
+//					if(e.key == OF_KEY_DEL || e.key == OF_KEY_BACKSPACE)
+//					{
+//						typeStr = typeStr.substr(0, typeStr.length()-1);
+//					}
+//					else if(e.key == OF_KEY_TAB)
+//					{
+//
+//					}
+//					else if(e.key == OF_KEY_RETURN)
+//					{
+//						TextInputEvent te;
+//						te.name = name;
+//						te.text = typeStr;
+//
+//						ofNotifyEvent(guiEvent, te, this);
+//						bHasFocus = false;
+//						bFirst = true;
+//					}
+//					else
+//					{
+//						if( bFirst )
+//						{
+//							typeStr = ofToString(e.key);
+//							bFirst = false;
+//						}
+//						else {
+//	//						typeStr.append(e.key);
+////							ofAppendUTF8(typeStr,e.codepoint);
+//							typeStr += ofToString(e.key);
+//						}
+//					}
 				}
 			}
 		}

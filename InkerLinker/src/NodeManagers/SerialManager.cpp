@@ -46,7 +46,9 @@ void SerialManager::exit()
 //--------------------------------------------------------------
 void SerialManager::sendData(string data)
 {
-	unsigned char *val= new unsigned char[data.length()+1];
-	strcpy((char *)val,data.c_str());
-	serialDevice.writeBytes(val, sizeof(val));
+	cout << data << endl;
+	data += "\n";
+	unsigned char * cstr = new unsigned char [data.length()+1];
+	std::strcpy ((char*)cstr, data.c_str());
+	serialDevice.writeBytes(cstr, sizeof(cstr));
 }
