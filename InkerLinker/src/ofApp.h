@@ -13,6 +13,7 @@
 #include "HelpServer.h"
 #include "NodeManagerConfig.h"
 #include "TouchBoardThresholdManager.h"
+#include "ofxSyphon.h"
 
 class ofApp : public ofBaseApp
 {
@@ -67,6 +68,9 @@ class ofApp : public ofBaseApp
 		OscData tmpOscData;
 	
 		HelpServer *helpServer;
+	
+		ofxSyphonServer syphonScreen;
+		bool bPublishScreen;
 	
 		ofColor tmpColor;
 		string tmpImageFile;

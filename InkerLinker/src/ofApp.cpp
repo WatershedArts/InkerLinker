@@ -4,7 +4,7 @@
 void ofApp::setup()
 {
 	ofSetDataPathRoot("../Resources/data/");
-	
+	ofSetFrameRate(60);
 	ofSetLogLevel(OF_LOG_FATAL_ERROR);
 	noOfXPoints = ofGetWidth() / IL_BACKGROUND_SPACING;
 	noOfYPoints = ofGetHeight() / IL_BACKGROUND_SPACING;
@@ -27,7 +27,10 @@ void ofApp::setup()
 	
 	helpServer = new HelpServer();
 	
+	syphonScreen.setName("InkerLinker");
+	
 	bShowTouchDebug = false;
+	bPublishScreen = false;
 }
 
 //--------------------------------------------------------------
@@ -49,10 +52,12 @@ void ofApp::update()
 void ofApp::draw()
 {
 	drawBackground();
-	touchBoardManager.draw();
 	
-	if(bShowTouchDebug) touchBoardManager.drawDebug(touchboardgui->getX()-290,touchboardgui->getY());
 	drawNodes();
+	if(bPublishScreen) {  syphonScreen.publishScreen(); }
+	
+	touchBoardManager.draw();
+	if(bShowTouchDebug) touchBoardManager.drawDebug(touchboardgui->getX()-290,touchboardgui->getY());
 	
 	if(newPatchCord != NULL) {
 		ofPushStyle();
@@ -63,8 +68,6 @@ void ofApp::draw()
 		ofDrawBezier(newPatchCord->startingPoint.x, newPatchCord->startingPoint.y, newPatchCord->firstCurvePoint.x, newPatchCord->firstCurvePoint.y, newPatchCord->secondCurvePoint.x, newPatchCord->secondCurvePoint.y, newPatchCord->endingPoint.x, newPatchCord->endingPoint.y);
 		ofPopStyle();
 	}
-	
-	for(auto node : nodes) node->draw();
 	
 	patchCordManager->draw();
 	
@@ -249,6 +252,7 @@ void ofApp::setupGuis()
 	iogui->addSvgButtonDown("Load", "load.svg");
 	iogui->addSvgButtonDown("Save", "save.svg");
 	iogui->addSvgToggleDown("Touch", "touch.svg");
+	iogui->addSvgToggleDown("Syphon", "syphon.svg");
 	iogui->addSvgButtonDown("Info", "info.svg");
 	iogui->autoResize();
 	iogui->setVisible();
@@ -652,6 +656,14 @@ void ofApp::svgToggleEvents(string &val)
 	{
 		touchboardgui->setVisible();
 		bShowTouchDebug = true;
+	}
+	else if(val == "Syphon:0")
+	{
+		bPublishScreen = false;
+	}
+	else if(val == "Syphon:1")
+	{
+		bPublishScreen = true;
 	}
 }
 
@@ -1541,7 +1553,8 @@ int ofApp::getNearestSnapSize(int numToRound, int multiple)
 //--------------------------------------------------------------
 void ofApp::drawBackground()
 {
-	ofBackgroundGradient(IL_BACKGROUND_COLOR_1, IL_BACKGROUND_COLOR_2,OF_GRADIENT_CIRCULAR);
+//	ofBackgroundGradient(IL_BACKGROUND_COLOR_1, IL_BACKGROUND_COLOR_2,OF_GRADIENT_CIRCULAR);
+	ofBackground(IL_BACKGROUND_COLOR_1);
 	ofPushStyle();
 	ofSetColor(255);
 	for (int y = 1; y < noOfYPoints; y++)
