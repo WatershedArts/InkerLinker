@@ -13,6 +13,7 @@ ofxNetworkUtils
 ofxOsc
 ofxSSLManager
 ofxSvgLoader
+ofxSyphon
 ofxTaskQueue
 ofxThreadedImageLoader
 ofxTouchBoard
