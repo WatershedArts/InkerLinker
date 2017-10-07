@@ -1,6 +1,6 @@
 {
   "serialconfig": {
-    "devicename": "this",
+    "devicename": "/dev/cu.usbmodem1411",
     "baud": 9600
   },
   "oscconfig": {
