@@ -65,12 +65,14 @@ class ILLogBox : public ILGUIObject
 			
 			for(int i = 0; i < logs.size(); i++)
 			{
-				if(logs[i].at(0) != '/') {
-					font->drawStringCentered(logs[i],box.getCenter().x,box.y+15+(i*15));
-				}
-				else {
-					std::size_t found = logs[i].find_last_of("/\\");
-					font->drawStringCentered(logs[i].substr(found+1),box.getCenter().x,box.y+15+(i*15));
+				if (logs[i].size() > 0) {
+					if(logs[i].at(0) != '/') {
+						font->drawStringCentered(logs[i],box.getCenter().x,box.y+15+(i*15));
+					}
+					else {
+						std::size_t found = logs[i].find_last_of("/\\");
+						font->drawStringCentered(logs[i].substr(found+1),box.getCenter().x,box.y+15+(i*15));
+					}
 				}
 			}
 			ofPopStyle();
